@@ -1,0 +1,22 @@
+---
+title: "Stock Option Cluster Analysis Model"
+description: "Personal Project"
+image: ../Project_Thumbnails/Stock_image.jpg
+---
+
+## Overview
+
+I used historical stock data from the S&P 500 to glean insights about profit in relation to volume of shares traded. This involved researching stock data, creating measurable metrics, and the various steps to ensure the data was analyzed correctly.
+allocation.
+
+## Steps in Analyzing Data:
+
+1. Upload dataset to Rstudio from Kaggle
+2. Clean the Data(removing 0s and NA using R)
+3. Used Distance Matrix to determine ideal number of clusters
+4. Used K means clustering, Hierarchical Clustering Analysis, & Dendrograms to analyze data
+5. Drawing conclusions using context of the stock in the S&P 500
+
+## Findings Report
+
+Read the full report [here](https://docs.google.com/document/d/162WtMZTZKcPS1vCBfs8c2o-_Q2ZRKvZHufxh-LP1C0g/edit?usp=sharing)

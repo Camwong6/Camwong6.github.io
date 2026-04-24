@@ -1,0 +1,36 @@
+---
+title: "Gallery"
+listing:
+  - id: professional-projects
+    contents: prof_projects
+    type: grid
+    fields: [image, title, description]
+    sort: "date desc"
+    grid-columns: 3
+    image-height: 180px
+  - id: personal-projects
+    contents: personal_projects
+    type: grid
+    fields: [image, title, description]
+    sort: "date desc"
+    grid-columns: 3
+    image-height: 180px
+---
+
+## Professional Projects
+
+::: {#professional-projects}
+:::
+
+add apac project here
+add sfcc newsletter project here
+
+## Personal Projects
+
+::: {#personal-projects}
+:::
+
+add stocks project here
+martain project
+uber project USF
+add airbnb uci

@@ -1,15 +1,44 @@
----
-title: "About Me"
-image: profile.jpg
-about:
-  template: jolla
-  links:
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com
-    - icon: github
-      text: GitHub
-      href: https://github.com
----
+## Education
 
-Replace this text with a short bio about yourself. What are you studying? What are you interested in? What do you want to work on?
+:::: {.columns}
+
+::: {.column}
+**B.S. Business Analytics**  
+University of San Francisco  
+
+*2025*
+
+**M.S. Business Analytics**  
+University of California, Irvine  
+
+*2026*
+:::
+
+::: {.column}
+
+<div style="text-align: center;">
+  <img src="/about_images/USF.png" width="200">
+</div>
+
+<div style="text-align: center;">
+  <img src="/about_images/UCI.png" width="70"
+ >
+</div>
+
+:::
+
+::::
+
+Raised in the Bay Area, I attended Mills High School before starting at San José State University as a Computer Engineer. I later transferred to the University of San Francisco, where I discovered a strong passion for Business Analytics, and graduated. This led me to pursue a master’s degree in the field as an Anteater at UC Irvine. 
+
+## Certifications
+
+## Professional Background
+
+I began my professional experience working at De Anza College as Technical Support. I then started my work in the public sector as a Fiscal Office Specialist with San Mateo County, where I handled financial transactions, maintained accurate records, and supported daily operations using tools like Excel. I then took my experience over to the San Francisco Chamber of Commerce(SFCC) working in their Marketing Team. At SFCC, I worked with various departments to promote the chamber’s initiatives and support member businesses through an analytical lens. 
+
+Building on that foundation, I developed strong analytical and organizational skills while working in fast-paced, detail-oriented environments and collaborating across teams. More recently, I’ve applied these skills to data-focused projects, using tools like SQL and Power BI to analyze data, create dashboards, and turn insights into actionable recommendations on data projects for Blue Shield of California and the SEVA Foundation.
+
+## Hobbies
+
+Surfing, Tennis, Cooking, Video Games, Trying new restaurants, Exploring new technologies

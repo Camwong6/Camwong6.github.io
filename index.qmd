@@ -1,11 +1,53 @@
----
-title: "Welcome I am Cameron"
----
+<!-- ---
+title: "About Me"
+image: profile.png
+about:
+  template: solana
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/cameronswong/
+    - icon: github
+      text: GitHub
+      href: https://github.com/Camwong6
+--- --> 
+ <!-- Creates side profile pic -->
 
-This is your portfolio site. Start by editing this page and `about.qmd` to make it your own.
+<div class="profile-top">
+  <img src="profile.png" alt="Profile photo" class="profile-pic">
+</div>
 
-## Next Steps
+# Cameron Wong | Data Analyst {.text-center} 
 
-- Edit `about.qmd` with your info
-- Create a project post in `posts/`
-- Push to `main` and your site will auto-deploy
+<div class="profile-links">
+  [LinkedIn](https://www.linkedin.com/in/cameronswong/){.btn .btn-outline-dark}
+  [GitHub](https://github.com/Camwong6){.btn .btn-outline-dark}
+</div>
+
+
+## Philosophy
+
+Put smth here.
+
+## Motivation
+
+I’m motivated by solving meaningful problems and creating impact through data. I’m excited to continue growing my skills and contributing to projects that make a difference. In my free time, I enjoy exploring new technologies, learning about data science, and connecting with others in the field.
+
+## Career interests
+
+Business Intelligence(BI) Analyst | Data Analyst | Consulting | Operations Analyst
+
+## Contact Me
+:::: {.columns}
+
+::: {.column width="45%"}
+### LinkedIn  
+https://www.linkedin.com/in/cameronswong/
+:::
+
+::: {.column width="55%"}
+### Email  
+cwong63014@gmail.com
+:::
+
+::::
