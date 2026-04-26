@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Airbnb Demand Analytics | My Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/cosmo/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark border-bottom custom-dark-nav">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" href="../index.html">My Portfolio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="../about.html">About Me</a></li>
+        <li class="nav-item"><a class="nav-link active" href="../projects.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="../cv.html">CV</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container" style="max-width: 860px;">
+
+  <nav aria-label="breadcrumb" class="mt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="../projects.html">Projects</a></li>
+      <li class="breadcrumb-item active">Airbnb Demand Analytics</li>
+    </ol>
+  </nav>
+
+  <h1>Airbnb Demand Prediction Model</h1>
+  <p class="text-muted">Machine Learning & Predictive Analytics Project</p>
+  <hr>
+
+  <h2 class="section-title">Project Overview</h2>
+  <p>This project focused on identifying the key factors that distinguish high-demand from low-demand Airbnb listings across major California cities. The goal was to help hosts and investors better understand what drives booking activity and optimize listing performance.</p>
+  <ul>
+    <li>Analyzed pricing, location, and listing characteristics</li>
+    <li>Built models to classify high-demand vs. low-demand listings</li>
+    <li>Generated insights for hosts, managers, and investors</li>
+  </ul>
+
+  <h2 class="section-title">Data Sources & Scope</h2>
+  <p>We worked with large-scale public Airbnb datasets across multiple markets to ensure robust analysis.</p>
+  <p>Combined data from:</p>
+  <ul>
+    <li>Los Angeles (~45K listings)</li>
+    <li>San Francisco (~36K listings)</li>
+    <li>San Diego (~13K listings)</li>
+  </ul>
+  <ul>
+    <li>Final dataset included <strong>~95,000 listings</strong> and 19 features</li>
+    <li>Key variables: price, room type, location, reviews, availability, and minimum nights</li>
+  </ul>
+
+  <h2 class="section-title">Data Cleaning & Feature Engineering</h2>
+  <p>Significant preprocessing and feature engineering were required to prepare the dataset for modeling.</p>
+  <ul>
+    <li>Cleaned price data by removing currency symbols and formatting</li>
+    <li>Handled missing values: numerical → filled with median; categorical → filled with mode or "Unknown"</li>
+    <li>Created a custom <strong>Demand Score</strong> to avoid data leakage: 70% review frequency + 30% review recency</li>
+    <li>Classified listings into <strong>High-Demand</strong> (top 30%) and <strong>Low-Demand</strong> (bottom 30%)</li>
+  </ul>
+
+  <h2 class="section-title">Model Development & Evaluation</h2>
+  <p>We built and compared multiple models to predict listing demand and evaluate performance.</p>
+  <ul>
+    <li>Logistic Regression (baseline): Accuracy <strong>68.89%</strong>, AUC <strong>72.41%</strong></li>
+    <li>Random Forest (final model): Accuracy <strong>93.28%</strong>, AUC <strong>97.90%</strong></li>
+    <li>Random Forest significantly outperformed baseline models in both accuracy and classification performance</li>
+  </ul>
+
+  <h2 class="section-title">Key Drivers of Demand</h2>
+  <p>The analysis identified the most important factors influencing Airbnb listing performance.</p>
+  <ul>
+    <li><strong>Number of reviews</strong> — strongest indicator of trust and popularity</li>
+    <li><strong>Minimum nights & availability</strong> — shorter stays and higher availability increase demand</li>
+    <li><strong>Price & location</strong> — competitive pricing and desirable neighborhoods drive bookings</li>
+  </ul>
+
+  <h2 class="section-title">Insights & Model Performance</h2>
+  <p>The Random Forest model demonstrated strong predictive capability in distinguishing listing demand levels.</p>
+  <ul>
+    <li>High AUC score indicates excellent classification performance</li>
+    <li>Model performs well across both high-demand and low-demand listings</li>
+    <li>Confirms that demand can be effectively predicted using behavioral and listing features</li>
+  </ul>
+
+  <h2 class="section-title">Recommendations</h2>
+  <p>Based on the analysis, we developed actionable strategies for both hosts and customers.</p>
+  <p>For Hosts:</p>
+  <ul>
+    <li>Encourage reviews to build social proof</li>
+    <li>Maintain flexible minimum night requirements</li>
+    <li>Use competitive and dynamic pricing strategies</li>
+    <li>Highlight location advantages (walkability, attractions, etc.)</li>
+  </ul>
+  <p>For Customers & Investors:</p>
+  <ul>
+    <li>Prioritize listings with strong review activity</li>
+    <li>Look for flexibility in stay duration</li>
+    <li>Evaluate price-to-value balance when selecting properties</li>
+  </ul>
+
+  <h2 class="section-title">Key Insights</h2>
+  <p>This project demonstrates how machine learning can be used to uncover actionable insights in real-world marketplaces.</p>
+  <ul>
+    <li>Demand is driven by a combination of trust signals, pricing strategy, and availability</li>
+    <li>Ensemble models like Random Forest provide high predictive accuracy for classification tasks</li>
+    <li>Data-driven insights can support better decision-making for both hosts and platform stakeholders</li>
+  </ul>
+
+  <h2 class="section-title">Presentation</h2>
+  <div class="embed-wrapper" style="padding-top: 57.76%;">
+    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQCesLQT0FXQyJr6C_L0zkZVO9vI1sFu65XWQJqyJBo5WJIt_zAuTwhHJzQaa14oA/pubembed?start=false&loop=false&delayms=3000" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+  </div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
