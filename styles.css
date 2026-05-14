@@ -241,6 +241,10 @@ a.brand {
   margin: 0;
 }
 
+.gallery-btn {
+  margin-top: 0.75rem;
+}
+
 /* ── Contact ───────────────────────────────────────────── */
 .contact-grid {
   display: grid;
