@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cameron Wong | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="home">
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="brand" href="index.html">Portfolio</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About Me</a>
+      <a href="projects.html">Projects</a>
+      <a href="cv.html">CV</a>
+    </div>
+  </div>
+</nav>
+
+<main class="page-wrapper">
+
+  <section class="hero">
+
+    <div class="hero-left">
+      <img src="profile.png" alt="Profile photo" class="profile-pic">
+      <h1 class="hero-name">Cameron Wong</h1>
+      <p class="hero-title">Data Analyst</p>
+      <div class="hero-buttons">
+        <a href="https://www.linkedin.com/in/cameronswong/" class="btn" target="_blank">
+          <i class="bi bi-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://github.com/Camwong6" class="btn" target="_blank">
+          <i class="bi bi-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+
+      <div class="content-section">
+        <h2>Philosophy</h2>
+        <p>I approach my work with a growth mindset, believing that skills are built through curiosity, persistence, and a willingness to learn from challenges. I value learning by doing, using hands-on experience and real-world projects to continuously improve and deepen my understanding.</p>
+      </div>
+
+      <div class="content-section">
+        <h2>Motivation</h2>
+        <p>I'm motivated by solving meaningful problems and creating impact through data. I'm excited to continue growing my skills and contributing to projects that make a difference. With the emergence of Artificial intelligence, we are enabled more now than ever to learn new skills, work more efficiently, think more creatively, and solve problems at scale. Ultimately, I aim to use data not just to analyze, but to connect with others translating insights into clear, meaningful stories that inform decisions and create a tangible impact.</p>
+      </div>
+
+      <div class="content-section">
+        <h2>Career Interests</h2>
+        <p>Business Intelligence (BI) Analyst &nbsp;|&nbsp; Data Analyst &nbsp;|&nbsp; Consulting &nbsp;|&nbsp; Operations Analyst</p>
+      </div>
+
+      <div class="content-section">
+        <h2>Contact Me</h2>
+        <div class="contact-grid">
+          <div>
+            <h5>LinkedIn</h5>
+            <a href="https://www.linkedin.com/in/cameronswong/" target="_blank">
+              <img src="home_images/linkedin.png.jpg" alt="LinkedIn" class="contact-logo">
+            </a>
+          </div>
+          <div>
+            <h5>Email</h5>
+            <button class="email-btn" onclick="showCopyEmail()">cwong63014@gmail.com</button>
+            <div id="emailPopover" class="email-popover">
+              <span>Copy email to clipboard?</span>
+              <div class="email-popover-actions">
+                <button class="btn btn-sm" onclick="copyEmail()">Copy</button>
+                <button class="btn btn-sm btn-ghost" onclick="dismissCopyEmail()">Cancel</button>
+              </div>
+            </div>
+            <p id="emailCopied" class="email-copied">Copied!</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+  function showCopyEmail() {
+    document.getElementById('emailPopover').classList.add('show');
+    document.getElementById('emailCopied').classList.remove('show');
+  }
+  function dismissCopyEmail() {
+    document.getElementById('emailPopover').classList.remove('show');
+  }
+  function copyEmail() {
+    navigator.clipboard.writeText('cwong63014@gmail.com').then(function () {
+      document.getElementById('emailPopover').classList.remove('show');
+      var el = document.getElementById('emailCopied');
+      el.classList.add('show');
+      setTimeout(function () { el.classList.remove('show'); }, 2000);
+    });
+  }
+</script>
+</body>
+</html>

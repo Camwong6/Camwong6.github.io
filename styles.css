@@ -1,0 +1,352 @@
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+  --max-width: 1100px;
+  --color-text: #1a1a1a;
+  --color-muted: #555;
+  --color-border: #e5e7eb;
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f7f7f7;
+  --radius: 8px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.65;
+}
+
+/* ── Shared navbar ─────────────────────────────────────── */
+nav.navbar {
+  all: unset;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background: #1a1a1a;
+  border-bottom: 1px solid var(--color-border);
+  height: 48px;
+}
+
+.nav-container {
+  all: unset;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+a.brand {
+  all: unset;
+  cursor: pointer;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.nav-links {
+  all: unset;
+  display: flex;
+  box-sizing: border-box;
+  gap: 2rem;
+}
+
+.nav-links a {
+  all: unset;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #aaaaaa;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ── Page wrapper ──────────────────────────────────────── */
+.page-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+}
+
+/* ── Hero layout ───────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 5rem;
+  padding-top: 4rem;
+  align-items: start;
+}
+
+/* ── Left column ───────────────────────────────────────── */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: sticky;
+  top: 2rem;
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 30%;
+  margin-bottom: 1.25rem;
+}
+
+.hero-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.2rem;
+}
+
+.hero-title {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ── Buttons ───────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.42rem 0.9rem;
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-family: var(--font);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn:hover {
+  background: var(--color-text);
+  color: #fff;
+}
+
+.btn.btn-sm {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.btn.btn-ghost {
+  border-color: var(--color-border);
+  color: var(--color-muted);
+}
+
+.btn.btn-ghost:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+/* ── Right column sections ─────────────────────────────── */
+.content-section {
+  margin-bottom: 2.5rem;
+}
+
+.content-section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 0.75rem;
+}
+
+.content-section p {
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+/* ── Contact ───────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.contact-grid h5 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+
+.contact-logo {
+  height: 36px;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
+.contact-logo:hover { opacity: 1; }
+
+.email-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-family: var(--font);
+}
+
+.email-btn:hover { color: var(--color-muted); }
+
+.email-popover {
+  display: none;
+  margin-top: 0.6rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-subtle);
+  max-width: 230px;
+}
+
+.email-popover.show { display: block; }
+
+.email-popover span {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.email-popover-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.email-copied {
+  display: none;
+  font-size: 0.82rem;
+  color: #16a34a;
+  margin-top: 0.4rem;
+}
+
+.email-copied.show { display: block; }
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-top: 2rem;
+  }
+
+  .hero-left { position: static; }
+
+  .contact-grid { grid-template-columns: 1fr; }
+
+  .nav-links { gap: 1.2rem; }
+}
+
+/* ── Bootstrap page dark navbar ───────────────────────── */
+.custom-dark-nav {
+  background-color: #1a1a1a !important;
+  border-bottom-color: #333 !important;
+}
+
+/* ── Shared styles used by other pages (Bootstrap pages) ── */
+.section-title {
+  margin-top: 2rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 0.4rem;
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+}
+
+.project-card .card-body { padding: 0.75rem 1rem; }
+
+.project-card .card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.project-card .card-text {
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.embed-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+  box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
+  margin-top: 1.6em;
+  margin-bottom: 0.9em;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.embed-wrapper iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border: none;
+}
+
+.pdf-embed-wrapper {
+  width: 100%;
+  height: 85vh;
+  box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
+  margin-top: 1.6em;
+  margin-bottom: 0.9em;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pdf-embed-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.navbar-nav .nav-link.active { font-weight: 600; }
+
+main { padding-bottom: 5rem; }
