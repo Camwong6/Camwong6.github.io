@@ -42,7 +42,7 @@
     <h2 class="section-title">Professional Projects</h2>
     <div class="row g-3">
 
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-4" data-keywords="eda exploratory data analysis competitive analysis market data health insurance nlp machine learning python">
         <a href="prof_projects/blue_shield.html" class="text-decoration-none text-dark">
           <div class="card h-100 project-card">
             <img src="Project_Thumbnails/BlueShield_thumbnail.png" alt="Blue Shield of California">
@@ -54,7 +54,7 @@
         </a>
       </div>
 
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-4" data-keywords="marketing email newsletter content analysis heatmap engagement data analysis branding outreach">
         <a href="prof_projects/sfcc_newsletters.html" class="text-decoration-none text-dark">
           <div class="card h-100 project-card">
             <img src="Project_Thumbnails/SFCC_logo.jpeg" alt="SFCC Newsletters">
@@ -66,7 +66,7 @@
         </a>
       </div>
 
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-4" data-keywords="sql snowflake excel vlookup power bi data cleaning visualization dashboard fundraising stakeholder">
         <a href="prof_projects/seva.html" class="text-decoration-none text-dark">
           <div class="card h-100 project-card">
             <img src="Project_Thumbnails/Seva_thumbnail.png" alt="Seva Foundation">
@@ -78,7 +78,7 @@
         </a>
       </div>
 
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-4" data-keywords="sql relational database database design normalization data analysis process optimization community data">
         <a href="prof_projects/apacc.html" class="text-decoration-none text-dark">
           <div class="card h-100 project-card">
             <img src="Project_Thumbnails/APACC.png" alt="APACC">
@@ -97,7 +97,7 @@
     <h2 class="section-title mt-5">Personal Projects</h2>
     <div class="row g-3">
 
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-4" data-keywords="clustering k-means hierarchical clustering dendrogram stock options finance data analysis r">
         <a href="personal_projects/stock_project.html" class="text-decoration-none text-dark">
           <div class="card h-100 project-card">
             <img src="Project_Thumbnails/Stock_image.jpg" alt="Stock Cluster Analysis">
@@ -116,7 +116,7 @@
     <h2 class="section-title mt-5">Academic Projects</h2>
     <div class="row g-3">
 
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-4" data-keywords="python pandas api google maps data cleaning data analysis pricing uber lyft ride-share">
         <a href="personal_projects/rideshare.html" class="text-decoration-none text-dark">
           <div class="card h-100 project-card">
             <img src="Project_Thumbnails/Rideshare.jpg" alt="Rideshare Analytics">
@@ -128,7 +128,7 @@
         </a>
       </div>
 
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-4" data-keywords="python clustering k-means regression data analysis agriculture environmental modeling">
         <a href="personal_projects/martian.html" class="text-decoration-none text-dark">
           <div class="card h-100 project-card">
             <img src="Project_Thumbnails/Martian.jpg" alt="Martian Farming Initiative">
@@ -140,7 +140,7 @@
         </a>
       </div>
 
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-4" data-keywords="python machine learning random forest logistic regression classification eda exploratory data analysis airbnb real estate">
         <a href="personal_projects/airbnb.html" class="text-decoration-none text-dark">
           <div class="card h-100 project-card">
             <img src="Project_Thumbnails/airbnb.jpg" alt="Airbnb Demand Analytics">
@@ -170,7 +170,8 @@
       section.querySelectorAll('.col-sm-6').forEach(function (card) {
         const title = card.querySelector('.card-title').textContent.toLowerCase();
         const text = card.querySelector('.card-text').textContent.toLowerCase();
-        const matches = !query || title.includes(query) || text.includes(query);
+        const keywords = (card.dataset.keywords || '').toLowerCase();
+        const matches = !query || title.includes(query) || text.includes(query) || keywords.includes(query);
         card.style.display = matches ? '' : 'none';
         if (matches) anyVisible = true;
       });
