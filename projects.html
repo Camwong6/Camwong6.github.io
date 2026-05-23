@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cameron Wong | Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="brand" href="index.html">Portfolio</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Me</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="cv.html">CV</a>
+    </div>
+  </div>
+</nav>
+
+<main class="projects-wrapper">
+
+  <h1 class="projects-page-title">Gallery</h1>
+
+  <div class="search-wrapper">
+    <i class="bi bi-search search-icon"></i>
+    <input
+      type="text"
+      id="projectSearch"
+      class="search-input"
+      placeholder='Search by keyword or skill — e.g. "SQL" or "Power BI"'
+    >
+  </div>
+
+  <div id="skillFilters" class="skill-filters"></div>
+
+  <div class="project-section" data-section>
+    <h2 class="project-section-title">Professional Projects</h2>
+    <div class="projects-grid">
+
+      <a href="prof_projects/blue_shield.html" class="project-card"
+         data-keywords="eda exploratory data analysis competitive analysis market data health insurance nlp machine learning python"
+         data-skills="Python,NLP,Machine Learning,EDA">
+        <img src="Project_Thumbnails/BlueShield_thumbnail.png" alt="Blue Shield of California">
+        <div class="card-body">
+          <span class="card-title">Blue Shield of California</span>
+          <span class="card-text">Competitive Analysis Insight Engine</span>
+          <div class="card-skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">NLP</span>
+            <span class="skill-tag">Machine Learning</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="prof_projects/sfcc_newsletters.html" class="project-card"
+         data-keywords="marketing email newsletter content analysis heatmap engagement data analysis branding outreach"
+         data-skills="Data Analysis,Marketing Analytics,Content Strategy">
+        <img src="Project_Thumbnails/SFCC_logo.jpeg" alt="SFCC Newsletters">
+        <div class="card-body">
+          <span class="card-title">San Francisco Chamber of Commerce</span>
+          <span class="card-text">Marketing Performance Analysis &amp; Content Development</span>
+          <div class="card-skills">
+            <span class="skill-tag">Data Analysis</span>
+            <span class="skill-tag">Marketing Analytics</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="prof_projects/seva.html" class="project-card"
+         data-keywords="sql snowflake excel vlookup power bi data cleaning visualization dashboard fundraising stakeholder"
+         data-skills="SQL,Power BI,Excel,Snowflake">
+        <img src="Project_Thumbnails/Seva_thumbnail.png" alt="Seva Foundation">
+        <div class="card-body">
+          <span class="card-title">Seva Foundation</span>
+          <span class="card-text">Stakeholder Fundraising &amp; Strategy Presentation</span>
+          <div class="card-skills">
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Excel</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="prof_projects/apacc.html" class="project-card"
+         data-keywords="sql relational database database design normalization data analysis process optimization community data"
+         data-skills="SQL,Database Design,Data Analysis">
+        <img src="Project_Thumbnails/APACC.png" alt="APACC">
+        <div class="card-body">
+          <span class="card-title">Asian Pacific American Community Center</span>
+          <span class="card-text">Community Data &amp; Outreach Analytics</span>
+          <div class="card-skills">
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Database Design</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="project-section" data-section>
+    <h2 class="project-section-title">Personal Projects</h2>
+    <div class="projects-grid">
+
+      <a href="personal_projects/stock_project.html" class="project-card"
+         data-keywords="clustering k-means hierarchical clustering dendrogram stock options finance data analysis r"
+         data-skills="R,Clustering,Finance,Data Analysis">
+        <img src="Project_Thumbnails/Stock_image.jpg" alt="Stock Cluster Analysis">
+        <div class="card-body">
+          <span class="card-title">Stock Option Cluster Analysis Model</span>
+          <span class="card-text">Personal Project</span>
+          <div class="card-skills">
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">Clustering</span>
+            <span class="skill-tag">Finance</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="project-section" data-section>
+    <h2 class="project-section-title">Academic Projects</h2>
+    <div class="projects-grid">
+
+      <a href="personal_projects/rideshare.html" class="project-card"
+         data-keywords="python pandas api google maps data cleaning data analysis pricing uber lyft ride-share"
+         data-skills="Python,Data Analysis,API">
+        <img src="Project_Thumbnails/Rideshare.jpg" alt="Rideshare Analytics">
+        <div class="card-body">
+          <span class="card-title">Rideshare Pricing and Usage Analytics</span>
+          <span class="card-text">Academic Project</span>
+          <div class="card-skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Data Analysis</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="personal_projects/martian.html" class="project-card"
+         data-keywords="python clustering k-means regression data analysis agriculture environmental modeling"
+         data-skills="Python,Clustering,Regression">
+        <img src="Project_Thumbnails/Martian.jpg" alt="Martian Farming Initiative">
+        <div class="card-body">
+          <span class="card-title">Case Study Competition: Martian Farming Initiative</span>
+          <span class="card-text">Academic Project</span>
+          <div class="card-skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Clustering</span>
+            <span class="skill-tag">Regression</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="personal_projects/airbnb.html" class="project-card"
+         data-keywords="python machine learning random forest logistic regression classification eda exploratory data analysis airbnb real estate"
+         data-skills="Python,Machine Learning,EDA">
+        <img src="Project_Thumbnails/airbnb.jpg" alt="Airbnb Demand Analytics">
+        <div class="card-body">
+          <span class="card-title">Airbnb Demand Analytics</span>
+          <span class="card-text">Academic Project</span>
+          <div class="card-skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Machine Learning</span>
+            <span class="skill-tag">EDA</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <p id="noResults" class="no-results">No projects match your search.</p>
+
+</main>
+
+<script>
+  const cards = Array.from(document.querySelectorAll('.project-card'));
+  let selectedSkill = null;
+
+  // Build unique skill list from all cards
+  const allSkills = [...new Set(
+    cards.flatMap(c => (c.dataset.skills || '').split(',').map(s => s.trim()).filter(Boolean))
+  )].sort();
+
+  // Render filter bubbles
+  const filtersEl = document.getElementById('skillFilters');
+  const allBtn = createFilterBtn('All', true);
+  allBtn.addEventListener('click', () => setSkill(null));
+  filtersEl.appendChild(allBtn);
+
+  allSkills.forEach(skill => {
+    const btn = createFilterBtn(skill, false);
+    btn.addEventListener('click', () => setSkill(skill === selectedSkill ? null : skill));
+    filtersEl.appendChild(btn);
+  });
+
+  function createFilterBtn(label, active) {
+    const btn = document.createElement('button');
+    btn.textContent = label;
+    btn.className = 'filter-bubble' + (active ? ' active' : '');
+    btn.dataset.skill = label;
+    return btn;
+  }
+
+  function setSkill(skill) {
+    selectedSkill = skill;
+    filtersEl.querySelectorAll('.filter-bubble').forEach(btn => {
+      const isActive = (skill === null && btn.dataset.skill === 'All') || btn.dataset.skill === skill;
+      btn.classList.toggle('active', isActive);
+    });
+    applyFilters();
+  }
+
+  document.getElementById('projectSearch').addEventListener('input', applyFilters);
+
+  function applyFilters() {
+    const query = document.getElementById('projectSearch').value.toLowerCase().trim();
+
+    document.querySelectorAll('[data-section]').forEach(section => {
+      let anyVisible = false;
+
+      section.querySelectorAll('.project-card').forEach(card => {
+        const skills = (card.dataset.skills || '').split(',').map(s => s.trim());
+        const keywords = (card.dataset.keywords || '').toLowerCase();
+        const title = card.querySelector('.card-title').textContent.toLowerCase();
+        const text = card.querySelector('.card-text').textContent.toLowerCase();
+
+        const skillMatch = !selectedSkill || skills.includes(selectedSkill);
+        const queryMatch = !query || title.includes(query) || text.includes(query) || keywords.includes(query);
+
+        const visible = skillMatch && queryMatch;
+        card.style.display = visible ? '' : 'none';
+        if (visible) anyVisible = true;
+      });
+
+      section.style.display = anyVisible ? '' : 'none';
+    });
+
+    const totalVisible = cards.filter(c => c.style.display !== 'none').length;
+    document.getElementById('noResults').style.display = (selectedSkill || query) && totalVisible === 0 ? 'block' : 'none';
+  }
+</script>
+</body>
+</html>
