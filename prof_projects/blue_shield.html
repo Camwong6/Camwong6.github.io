@@ -10,6 +10,72 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/cosmo/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    .project-page-layout {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 860px);
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .project-sidebar {
+      position: sticky;
+      top: calc(56px + 1.5rem);
+      padding-top: 1.5rem;
+    }
+
+    .sidebar-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--color-muted);
+      margin-bottom: 0.6rem;
+      padding-left: 0.75rem;
+    }
+
+    .project-sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .sidebar-link {
+      font-size: 0.83rem;
+      color: var(--color-muted);
+      text-decoration: none;
+      padding: 0.38rem 0.75rem;
+      border-radius: 6px;
+      border-left: 2px solid transparent;
+      transition: all 0.2s;
+      font-weight: 500;
+      display: block;
+    }
+
+    .sidebar-link:hover {
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+    }
+
+    .sidebar-link.active {
+      color: var(--color-accent);
+      border-left-color: var(--color-accent);
+      background: var(--color-accent-light);
+      font-weight: 600;
+    }
+
+    @media (max-width: 860px) {
+      .project-page-layout {
+        grid-template-columns: 1fr;
+      }
+      .project-sidebar {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -25,101 +91,128 @@
   </div>
 </nav>
 
-<main class="container" style="max-width: 860px;">
+<div class="project-page-layout">
 
-  <nav aria-label="breadcrumb" class="mt-3">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="../projects.html">Projects</a></li>
-      <li class="breadcrumb-item active">Blue Shield of California</li>
-    </ol>
-  </nav>
+  <aside class="project-sidebar">
+    <p class="sidebar-label">On this page</p>
+    <nav>
+      <a href="#eda" class="sidebar-link">EDA</a>
+      <a href="#final-presentation" class="sidebar-link">Final Presentation</a>
+      <a href="#ux-case-study" class="sidebar-link">UX Case Study</a>
+    </nav>
+  </aside>
 
-  <h1>Blue Shield of California</h1>
-  <p class="text-muted">Competitive Intelligence Insights Engine &nbsp;·&nbsp; UC Irvine MSBA Capstone 2026</p>
-  <hr>
+  <main style="min-width: 0;">
 
-  <h2 class="section-title">Overview</h2>
-  <p>Blue Shield of California's Competitive Intelligence team tracks earnings calls, SEC filings, press releases, and analyst reports across multiple insurers every week. The intelligence existed. The infrastructure to use it didn't.</p>
-  <p>The weekly CI newsletter captured roughly one-eighth of the relevant content available in earnings transcripts alone — not because analysts were missing things, but because synthesizing 720,000+ words of unstructured data manually is a workflow problem, not a knowledge problem.</p>
-  <p>We built a three-layer RAG-based Competitive Intelligence Insights Engine that turns hours of manual research into a single search query. The engine tracks 9 competitors simultaneously and cuts insight generation time by 10x versus manual review. Analysts shift from transcript skimming to strategic interpretation, and coverage becomes consistent across the full team rather than dependent on any one person's process.</p>
+    <nav aria-label="breadcrumb" class="mt-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../projects.html">Projects</a></li>
+        <li class="breadcrumb-item active">Blue Shield of California</li>
+      </ol>
+    </nav>
 
-  <h2 class="section-title">The Challenge</h2>
-  <p>Blue Shield's strategy team tracked eight major health insurance competitors across SEC filings, earnings transcripts, and news sources. Every week, the CI team — led by a strategy liaison named Steven — manually combed through that material to produce a newsletter summarizing what competitors were doing and why it mattered.</p>
-  <p>The problem wasn't access to information. It was the time and cognitive load required to turn thousands of pages of financial and regulatory language into a two-page brief a senior stakeholder could act on. The core design question: how do you make an executive trust and act on AI-generated analysis they didn't produce themselves?</p>
+    <h1>Blue Shield of California</h1>
+    <p class="text-muted">Competitive Intelligence Insights Engine &nbsp;·&nbsp; UC Irvine MSBA Capstone 2026</p>
+    <hr>
 
-  <h2 class="section-title">The Users</h2>
-  <p><strong>Primary:</strong> Steven and the CI team — analysts who understood the source material deeply but spent too much time finding and synthesizing it manually.</p>
-  <p><strong>Secondary:</strong> Blue Shield leadership — non-technical stakeholders who consumed the output but would never interact with the underlying data.</p>
-  <p>Designing for both meant the tool had to work at two levels: detailed enough for an analyst to verify, scannable enough for an executive to act on.</p>
+    <h2 class="section-title">Overview</h2>
+    <p>Blue Shield of California's Competitive Intelligence team reads earnings calls, SEC filings, press releases, and analyst reports across multiple insurers every week. Their weekly newsletter captured roughly one-eighth of the available transcript content. Synthesizing 720,000+ words of unstructured text manually takes more time than the team had.</p>
+    <p>We built a three-layer RAG system that lets an analyst run one search query instead of half a day in transcripts. It tracks 9 competitors simultaneously and cuts research time by 10x. Analysts spend that time interpreting findings, not hunting for them.</p>
 
-  <h2 class="section-title">Exploratory Data Analysis</h2>
-  <p>The first step was conducting exploratory data analysis on earnings call transcripts from top competitors. This involved cleaning and preprocessing the data, identifying key variables, and visualizing trends and patterns. EDA uncovered insights about market share, customer demographics, and competitive positioning that laid the foundation for building the insight engine.</p>
+    <h2 class="section-title">The Challenge</h2>
+    <p>Blue Shield's CI team spent every week manually reading through eight competitors' SEC filings, earnings transcripts, and news coverage to produce a newsletter. Thousands of pages of financial and regulatory language had to become a two-page brief a senior stakeholder could act on.</p>
+    <p>Getting executives to trust AI-generated analysis from documents they never read was the central design challenge.</p>
 
-  <div class="embed-wrapper">
-    <iframe loading="lazy"
-      src="https://www.canva.com/design/DAHGo4ycI-I/SopQB3kl3BWXuhwnTjglWA/view?embed"
-      allowfullscreen allow="fullscreen">
-    </iframe>
-  </div>
+    <h2 class="section-title">The Users</h2>
+    <p><strong>Primary:</strong> The CI team. They knew the source material well but spent too much time locating and synthesizing it.</p>
+    <p><strong>Secondary:</strong> Blue Shield leadership. They consumed the output without touching the underlying data.</p>
+    <p>The tool had to work at two levels: granular enough for an analyst to verify a specific claim, clean enough for an executive to act on the summary.</p>
 
-  <h2 class="section-title">What We Built</h2>
-  <p>The engine is structured across three layers:</p>
-  <ul>
-    <li><strong>Data Ingestion</strong> — Auto-pulls from SEC filings, news articles, and real-time web results on a 6-hour refresh cycle.</li>
-    <li><strong>RAG Core</strong> — Hybrid semantic/keyword retrieval (60/40 split) across 46,000+ indexed chunks surfaces relevant results regardless of how a question is phrased.</li>
-    <li><strong>AI Generation</strong> — Claude Haiku and Sonnet deliver structured, source-cited answers grounded in the retrieved corpus, with response caching to reduce redundant API calls.</li>
-  </ul>
-  <p>A four-tier source credibility ranking, domain-specific prompts tuned for health insurance CI, proactive keyword alerts, and one-click PDF export round out the platform.</p>
+    <h2 class="section-title" id="eda">Exploratory Data Analysis</h2>
+    <p>We started by running EDA on earnings call transcripts from top competitors, cleaning and preprocessing the data to surface market share trends, demographic patterns, and competitive positioning signals. Those findings shaped what we indexed and how we structured retrieval.</p>
 
-  <h2 class="section-title">Final Presentation</h2>
+    <div class="embed-wrapper">
+      <iframe loading="lazy"
+        src="https://www.canva.com/design/DAHGo4ycI-I/SopQB3kl3BWXuhwnTjglWA/view?embed"
+        allowfullscreen allow="fullscreen">
+      </iframe>
+    </div>
 
-  <div class="embed-wrapper">
-    <iframe loading="lazy"
-      src="https://www.canva.com/design/DAHLy_APpNQ/6BFqAYfEYANoKEsdajKM7w/view?embed"
-      allowfullscreen allow="fullscreen">
-    </iframe>
-  </div>
+    <h2 class="section-title">What We Built</h2>
+    <p>The system runs across three layers:</p>
+    <ul>
+      <li><strong>Data ingestion:</strong> SEC filings, news articles, and real-time web results auto-pull on a 6-hour refresh cycle.</li>
+      <li><strong>RAG core:</strong> Hybrid semantic/keyword retrieval (60/40 split) searches 46,000+ indexed chunks. Analysts get relevant results whether they phrase a question precisely or loosely.</li>
+      <li><strong>AI generation:</strong> Claude Haiku and Sonnet return structured, source-cited answers grounded in the retrieved corpus. Response caching cuts redundant API calls.</li>
+    </ul>
+    <p>We also built in a four-tier source credibility ranking, domain-specific prompts tuned for health insurance, proactive keyword alerts, and one-click PDF export.</p>
 
-  <h2 class="section-title">UX Case Study</h2>
-  <p>Rather than building a single interface, I designed three distinct modes — each matching a different job the user needed to do.</p>
+    <h2 class="section-title" id="final-presentation">Final Presentation</h2>
 
-  <h3 class="mt-4">1. Signal Dashboard <span class="text-muted fw-normal fs-6">(Monitor)</span></h3>
-  <p><em>For the question: what's moving right now?</em></p>
-  <p>The overview shows a Competitive Threat Index ranking competitors by signal volume, an Intelligence Coverage breakdown by topic, and a Signal Momentum Trend line. An analyst checking in each morning can see at a glance whether activity is spiking and where attention should go. No AI output on this screen — just structured signal data. The goal was to give the team a reason to open the tool daily, not just when they needed to write something.</p>
+    <div class="embed-wrapper">
+      <iframe loading="lazy"
+        src="https://www.canva.com/design/DAHLy_APpNQ/6BFqAYfEYANoKEsdajKM7w/view?embed"
+        allowfullscreen allow="fullscreen">
+      </iframe>
+    </div>
 
-  <h3 class="mt-4">2. Competitor Profiles <span class="text-muted fw-normal fs-6">(Explore)</span></h3>
-  <p><em>For the question: what do I need to know about this company?</em></p>
-  <p>Each competitor gets a profile card showing revenue, member count, and MLR at a glance. Clicking through opens a detail view with a one-paragraph positioning summary, a Threats to Blue Shield of CA section flagged at high or low priority, and a Strengths / Weaknesses / Recent Strategic Moves breakdown. Financial metrics live at the card level as a credibility check; strategic interpretation lives one level deeper where it earns more attention.</p>
+    <h2 class="section-title" id="ux-case-study">UX Case Study</h2>
+    <p>I designed four distinct surfaces, each built around a specific job the user needed to do.</p>
 
-  <h3 class="mt-4">3. Ask AI Chat <span class="text-muted fw-normal fs-6">(Query)</span></h3>
-  <p><em>For the question: I have a specific question right now.</em></p>
-  <p>The chat interface lets Steven or a team member ask a free-form question and get a sourced answer. The key design decision was the inline citation chip — a small [Source 4] tag embedded directly in the response text, not listed at the bottom. Burying citations at the end of an AI response encourages users to skip them and take the answer on faith. Embedding them inline at the specific claim they support makes verification feel like part of reading, not extra work. For a tool where the output would inform executive decisions, trust infrastructure wasn't a nice-to-have.</p>
+    <h3 class="mt-4">1. Signal Dashboard <span class="text-muted fw-normal fs-6">(Monitor)</span></h3>
+    <p>The overview shows a Competitive Threat Index ranking competitors by signal volume, a topic-level coverage breakdown, and a Signal Momentum Trend line. An analyst checking in each morning can see in seconds whether activity is spiking and where to focus. This screen carries no AI output, only structured signal data. I wanted the team opening it daily as a habit, not only when someone needed to write a brief.</p>
 
-  <h3 class="mt-4">4. Brief Generator <span class="text-muted fw-normal fs-6">(Synthesize)</span></h3>
-  <p><em>For the question: I need to write the weekly newsletter.</em></p>
-  <p>The brief generator was designed around Steven's actual workflow. Every week he built a competitive newsletter by hand — pulling from memory and scattered notes. This screen lets him select competitors, choose focus areas (Financial Performance, Market Strategy, Medicare, etc.), set a date window, and generate a structured brief in seconds. The output appears alongside the configuration panel so he can review it without losing his selections. The goal was to replace a two-hour manual process, not to replace Steven's judgment — the configuration controls keep him in the decision seat.</p>
+    <h3 class="mt-4">2. Competitor Profiles <span class="text-muted fw-normal fs-6">(Explore)</span></h3>
+    <p>Each competitor gets a profile card showing revenue, member count, and MLR. Clicking through opens a detail view with a one-paragraph positioning summary, a high/low-priority Threats to Blue Shield section, and a Strengths / Weaknesses / Recent Strategic Moves breakdown. Financials sit at the card level because that's the first thing the CI team reaches for when sizing up a competitor. Strategic interpretation goes one level deeper, in the detail view where readers are already engaged.</p>
 
-  <h2 class="section-title">Key Design Decisions</h2>
-  <p><strong>Citation chips inline, not at the bottom.</strong> AI outputs are easy to over-trust. Putting source references at the point of the claim — not appended as a footnote — keeps the analyst in a verification mindset while reading. This was a deliberate choice made because the tool's output would inform real strategic decisions.</p>
-  <p><strong>Three modes instead of one.</strong> Early thinking treated this as a chat tool. I pushed for separating monitoring, exploration, and querying into distinct surfaces because they serve different cognitive states. You don't want to run a search query when you're trying to get a morning overview — the mode should match the moment.</p>
-  <p><strong>Financial metrics at the card level.</strong> When I looked at how the CI team evaluated competitors, they reached for revenue and member count first — not as the conclusion, but as the credibility frame for everything else. Surfacing those at the card level meant the detail view could carry more interpretive content without losing the reader.</p>
+    <h3 class="mt-4">3. Ask AI Chat <span class="text-muted fw-normal fs-6">(Query)</span></h3>
+    <p>The chat interface takes free-form questions and returns sourced answers. The key call was inline citation chips: each [Source 4] tag sits at the specific claim it supports, not appended at the bottom. When citations are buried at the end, analysts skip them and take the answer at face value. Inline, verification is part of reading. The output fed real executive decisions, so the tool needed to hold up to scrutiny.</p>
 
-  <h2 class="section-title">What I'd Change</h2>
-  <p>The citation experience in the chat is the thing I'd revisit with more time. Right now the chips are static labels. Ideally they'd be interactive — clickable, expanding to show the relevant excerpt from the source document directly in the chat pane, without opening a separate view. That would close the loop between the AI's claim and the evidence behind it, which is the most important trust moment in the whole product.</p>
+    <h3 class="mt-4">4. Brief Generator <span class="text-muted fw-normal fs-6">(Synthesize)</span></h3>
+    <p>I designed the brief generator around the CI team's actual workflow. Every week they built the competitive newsletter from memory and scattered notes. This screen lets an analyst select competitors, choose focus areas (Financial Performance, Market Strategy, Medicare), set a date window, and generate a structured brief. The output appears next to the configuration panel for review without losing the selections. The controls stay explicit so the analyst decides what goes in, not the model.</p>
 
-  <h2 class="section-title">The Broader Pattern</h2>
-  <p>The design problem at the core of this tool — how does a user trust and act on an answer an AI generated from sources they didn't read? — is the same problem at the center of any AI search product. The citation chip, the sourced brief, the separation of signal monitoring from direct querying: these aren't healthcare-specific patterns. They're interaction design responses to a general challenge that products like Ask YouTube are navigating right now.</p>
+    <h2 class="section-title">Key Design Decisions</h2>
+    <p><strong>Inline citation chips.</strong> Analysts reading AI output tend to skip citations appended at the bottom and accept the answer. Placing each source tag at the specific claim it supports keeps verification part of reading. The output fed real strategic decisions, so I built the trust mechanisms in from the start.</p>
+    <p><strong>Four distinct surfaces.</strong> The early spec was a single chat interface. I separated monitoring, exploration, querying, and synthesis into their own screens because each task starts from a different cognitive state. An analyst checking morning signals has no use for a query box. A focused search should happen on its own screen.</p>
+    <p><strong>Revenue and member count at the card level.</strong> Watching the CI team evaluate competitors, I saw them reach for financials first as a credibility baseline. Surfacing those metrics at the card level freed the detail view to carry deeper interpretive content without losing the reader's attention.</p>
 
-  <h2 class="section-title">My Role</h2>
-  <p>I led the problem framing and stakeholder narrative for the final presentation, developed the opening hook and problem/parallel structure, and owned the technical architecture walkthrough covering all three layers. I also contributed to pipeline design and coordinated the demo sequence.</p>
+    <h2 class="section-title">What I'd Change</h2>
+    <p>I'd make the citation chips interactive. Right now they're static labels. Given more time, I'd make each chip clickable, expanding to show the relevant source excerpt in the chat pane without opening a separate view. That's the moment an analyst decides whether to trust the answer, and the current design leaves it unresolved.</p>
 
-  <h2 class="section-title">Stack &amp; Team</h2>
-  <p><strong>Stack:</strong> Python · Claude API (Haiku + Sonnet) · Retrieval-Augmented Generation · Hybrid semantic/keyword search · SEC EDGAR · Real-time news ingestion</p>
-  <p><strong>Team:</strong> Cameron Wong · Orr Tahar · Shweta SC · Ying Chih (Inez) Chang · Anwen (Ann) Chen<br>
-  <span class="text-muted">Industry Liaison: Steven (Blue Shield of California)</span></p>
+    <h2 class="section-title">The Broader Pattern</h2>
+    <p>Getting a user to trust and act on AI-generated answers from documents they never read is the core challenge in any AI search product. The citation chip, the sourced brief, the separation of monitoring from querying: these interaction patterns apply beyond health insurance. Products like Ask YouTube are working through the same problem right now.</p>
 
-</main>
+    <h2 class="section-title">My Role</h2>
+    <p>For the final presentation, I framed the problem narrative, structured the opening and the competitive parallel, and walked through the technical architecture across all three layers. I also worked on pipeline design and ran the demo sequence.</p>
+
+    <h2 class="section-title">Stack &amp; Team</h2>
+    <p><strong>Stack:</strong> Python · Claude API (Haiku + Sonnet) · Retrieval-Augmented Generation · Hybrid semantic/keyword search · SEC EDGAR · Real-time news ingestion</p>
+    <p><strong>Team:</strong> Cameron Wong · Orr Tahar · Shweta SC · Ying Chih (Inez) Chang · Anwen (Ann) Chen<br>
+    <span class="text-muted">Industry Partner: Blue Shield of California</span></p>
+
+  </main>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  const sectionIds = ['eda', 'final-presentation', 'ux-case-study'];
+  const sections = sectionIds.map(id => document.getElementById(id));
+
+  function updateActive() {
+    const scrollY = window.scrollY;
+    let current = '';
+    sections.forEach(sec => {
+      if (sec && scrollY >= sec.offsetTop - 120) current = sec.id;
+    });
+    sidebarLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+</script>
 </body>
 </html>
