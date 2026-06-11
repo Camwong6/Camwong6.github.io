@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cameron Wong | SkinGuard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/cosmo/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="brand" href="../index.html">Portfolio</a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About Me</a>
+      <a href="../projects.html" class="active">Projects</a>
+      <a href="../cv.html">CV</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container" style="max-width: 860px;">
+
+  <nav aria-label="breadcrumb" class="mt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="../projects.html">Projects</a></li>
+      <li class="breadcrumb-item active">SkinGuard</li>
+    </ol>
+  </nav>
+
+  <h1>SkinGuard</h1>
+  <p class="text-muted">BANA 274 · UC Irvine, Paul Merage School of Business</p>
+  <hr>
+
+  <div class="mb-3">
+    <span class="skill-tag">Python</span>
+    <span class="skill-tag">Machine Learning</span>
+    <span class="skill-tag">Computer Vision</span>
+    <span class="skill-tag">Healthcare Analytics</span>
+    <span class="skill-tag">Web Development</span>
+  </div>
+
+  <h2 class="section-title">Overview</h2>
+  <p>SkinGuard is an AI-powered skin cancer screening tool that analyzes dermoscopy and clinical images to assess risk for three malignant conditions: <strong>melanoma</strong>, <strong>basal cell carcinoma</strong>, and <strong>actinic keratosis / squamous cell carcinoma</strong>. The system produces probability estimates for each condition and categorizes overall risk as low, medium, or high — providing an accessible first-pass screening aid for users who may not have immediate access to a dermatologist.</p>
+  <p>The project is deployed as a web application and available on both desktop and mobile browsers. Note: this tool is designed for research and educational purposes only and is not a substitute for professional medical diagnosis.</p>
+
+  <h2 class="section-title">Technical Approach</h2>
+  <p>The pipeline is built around <strong>Google Gemini Vision API</strong>, which powers the image analysis and probability scoring. Before any image reaches the model, an automatic quality assessment step rejects poor-quality submissions — blurry, low-resolution, or incorrectly formatted images — ensuring the model only processes actionable input.</p>
+  <ul>
+    <li>Backend developed in <strong>Python 3.10+</strong>, handling image ingestion, quality checks, API calls, and response formatting</li>
+    <li>Frontend built with <strong>JavaScript, HTML, and CSS</strong> for a responsive, accessible interface supporting JPG, PNG, and WebP uploads</li>
+    <li>Application deployed via <strong>Render</strong> (free tier)</li>
+    <li>Independent probability estimates computed per condition, surfaced alongside a summary risk tier</li>
+  </ul>
+
+  <h2 class="section-title">Key Takeaways</h2>
+  <p>SkinGuard demonstrated how multimodal AI models can be applied to healthcare screening workflows with relatively lightweight infrastructure. The project highlighted both the promise and the responsibility that comes with deploying AI in health-adjacent contexts: image quality control, transparent uncertainty communication, and clear disclaimers about clinical limitations are non-negotiable design requirements, not afterthoughts.</p>
+  <p>The project also reinforced the value of a clean separation between backend logic and frontend presentation — keeping the Python API layer decoupled from the UI made iterating on both significantly easier.</p>
+
+  <h2 class="section-title">GitHub</h2>
+  <p><a href="https://github.com/Camwong6/SkinGuard" target="_blank" rel="noopener">github.com/Camwong6/SkinGuard</a></p>
+
+  <h2 class="section-title">Presentation</h2>
+  <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+      src="https://www.canva.com/design/DAHMQPz4w-s/kU7khyGKu-iYPCuCS6N7eA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+    </iframe>
+  </div>
+  <a href="https://www.canva.com/design/DAHMQPz4w-s/kU7khyGKu-iYPCuCS6N7eA/view?utm_content=DAHMQPz4w-s&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Copy of BANA274 - Final Presentation</a> by Cameron Wong
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
