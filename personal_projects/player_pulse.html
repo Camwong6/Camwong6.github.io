@@ -38,29 +38,110 @@
   <p class="text-muted">Valorant Customer Spend Analysis &mdash; Personal Project</p>
   <hr>
 
+  <div class="mb-3">
+    <span class="skill-tag">Python</span>
+    <span class="skill-tag">SQL</span>
+    <span class="skill-tag">Machine Learning</span>
+    <span class="skill-tag">EDA</span>
+    <span class="skill-tag">Tableau</span>
+  </div>
+
   <h2 class="section-title">Overview</h2>
-  <p>Player Pulse is a lifecycle segmentation framework built for live-service games, using synthetic Valorant-style player behavior data. The goal was to identify distinct player segments based on engagement and spending patterns, then model the drivers of in-game purchases to surface actionable retention and monetization insights.</p>
+  <p>Player Pulse is a multi-stage lifecycle segmentation and spend prediction framework built on synthetic Valorant-style player data. The project simulates 109,000 players across five seasons (2021–2025) — spanning 500,000+ transactions — and works through a full analytics pipeline: SQL exploration, RFM segmentation, Random Forest modeling, and Tableau visualization. The goal is to surface actionable monetization and retention insights for a live-service game context.</p>
 
-  <h2 class="section-title">Tech Stack</h2>
+  <h2 class="section-title">Data Generation</h2>
+  <p>Both datasets were synthetically generated using <code>generate_datasets.py</code>, designed to reflect realistic behavioral and spending patterns in a live-service game:</p>
   <ul>
-    <li><strong>Python</strong> — data cleaning, EDA, and feature engineering</li>
-    <li><strong>SQL</strong> — querying and aggregating player behavior data</li>
-    <li><strong>Random Forest</strong> — predicting customer spend and identifying key drivers</li>
-    <li><strong>Tableau</strong> — interactive dashboards for lifecycle segment visualization</li>
+    <li><strong>Transaction data</strong> — ~500,500 rows; each record represents a single in-game purchase with a user ID, transaction date, and amount</li>
+    <li><strong>Player behavior data</strong> — 109,000 rows; one record per active user-season, tracking rank, session depth, esports viewership, agent diversity, cross-platform hours, and 30-day retention</li>
   </ul>
+  <p>Players were assigned to four spend tiers at generation time: <strong>Non-Spender</strong> (40%), <strong>Casual</strong> (35%), <strong>Mid-Tier</strong> (20%), and <strong>Whale</strong> (5%). Rank progression, retention rates, and seasonal revenue weighting (35% concentrated in Sept–Dec) were all baked into the synthetic parameters to mirror real live-service dynamics.</p>
 
-  <h2 class="section-title">Analytical Approach</h2>
-  <ol>
-    <li>Generated and cleaned synthetic Valorant-style player behavior CSV data</li>
-    <li>Performed exploratory data analysis to understand spend distribution and engagement trends</li>
-    <li>Segmented players into lifecycle stages (new, active, at-risk, churned) using behavioral metrics</li>
-    <li>Built Random Forest models to predict spend and rank feature importance</li>
-    <li>Exported segment data to Tableau for dashboard development and storytelling</li>
-    <li>Synthesized findings into a PDF report with recommendations for retention strategy</li>
-  </ol>
+  <h2 class="section-title">Pipeline</h2>
 
-  <h2 class="section-title">Key Findings</h2>
-  <p>The analysis revealed that playtime frequency and match win rate were the strongest predictors of in-game spend. At-risk players — identified by declining session frequency — showed significantly lower spend in the 30 days prior to churn, suggesting a viable early-intervention window for re-engagement campaigns.</p>
+  <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Step 1 — SQL Exploratory Analysis</h3>
+  <p>Before any modeling, a correlation heatmap surfaced five business questions worth investigating in SQL. Each query was designed to test a specific signal from the heatmap:</p>
+
+  <table class="table table-bordered table-sm mt-3 mb-4">
+    <thead class="table-light">
+      <tr>
+        <th>Question</th>
+        <th>Finding</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Does early spending predict future retention?</td>
+        <td>Players who spent in a prior season were <strong>11.4 percentage points</strong> more likely to be retained</td>
+      </tr>
+      <tr>
+        <td>Do esports watchers spend more than non-watchers?</td>
+        <td>Esports watchers spend more in aggregate — but controlling for longevity (spend per season), the gap narrows, revealing longevity as the confounding factor</td>
+      </tr>
+      <tr>
+        <td>Does agent diversity predict long-term engagement?</td>
+        <td>Players who experiment with more agents show higher season counts and retention rates — experimentation is a leading indicator of stickiness</td>
+      </tr>
+      <tr>
+        <td>Who are the at-risk high-value players?</td>
+        <td>Recency-bucketed spend analysis surfaces lapsing and at-risk players by revenue at stake, enabling prioritized re-engagement targeting</td>
+      </tr>
+      <tr>
+        <td>Does rank + session depth together predict spend better than either alone?</td>
+        <td>High-rank, long-session players outspend all other combinations — the interaction effect is stronger than either variable individually</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Step 2 — RFM Segmentation (Python)</h3>
+  <p>Using the transaction data, each player was scored on <strong>Recency</strong> (days since last purchase), <strong>Frequency</strong> (transaction count), and <strong>Monetary</strong> (total spend) — each on a 1–5 quintile scale. RFM composite scores mapped players into eight named business segments:</p>
+  <ul>
+    <li><strong>Champion</strong> — recent, frequent, high-spend</li>
+    <li><strong>Loyal Player</strong> — consistent across all three dimensions</li>
+    <li><strong>High Spender</strong> — recent with large purchase amounts</li>
+    <li><strong>New Player</strong> — recent but low frequency</li>
+    <li><strong>At Risk</strong> — previously frequent/high-spend but lapsing</li>
+    <li><strong>Lapsing</strong> — declining engagement, moderate spend history</li>
+    <li><strong>Churned</strong> — very low recency score</li>
+    <li><strong>Casual / Non-Spender</strong> — minimal or zero transaction history</li>
+  </ul>
+  <p>The merged behavioral + RFM dataset was exported as <code>player_segments.csv</code> for downstream modeling and visualization.</p>
+
+  <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Step 3 — Random Forest Models (Python)</h3>
+  <p>Two separate models were built on the aggregated 109,000-player dataset, using only behavioral features to prevent data leakage (spend-derived columns like transaction count and recency days were excluded from model inputs):</p>
+
+  <table class="table table-bordered table-sm mt-3 mb-4">
+    <thead class="table-light">
+      <tr>
+        <th>Model</th>
+        <th>Question</th>
+        <th>Target</th>
+        <th>Evaluation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Classifier</strong></td>
+        <td>Will a player spend at all?</td>
+        <td><code>is_spender</code> (binary)</td>
+        <td>ROC-AUC, classification report; <code>class_weight='balanced'</code> to correct for the ~40% spender rate</td>
+      </tr>
+      <tr>
+        <td><strong>Regressor</strong></td>
+        <td>For players who do spend, how much?</td>
+        <td><code>total_spend</code> (spenders only, ~65k players)</td>
+        <td>MAE, RMSE, R²; trained on spender subset only</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Both models share the same 13 behavioral input features: cohort year, seasons active, average and peak rank score, session depth, esports viewership, agent diversity, cross-platform engagement, account age, and average retention. Feature importances were exported to <code>feature_importance_comparison.csv</code> for cross-model comparison.</p>
+
+  <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Step 4 — Tableau Dashboard</h3>
+  <p>A Tableau workbook (<code>WIP_Dashboard.twb</code>) is in progress, visualizing segment distributions, revenue breakdowns, and retention metrics across the lifecycle model. The dashboard will serve as the primary deliverable for presenting findings to a non-technical audience.</p>
+
+  <h2 class="section-title">GitHub</h2>
+  <p><a href="https://github.com/Camwong6/Player-Pulse-A-Lifecycle-Segmentation-Framework-for-Live-Service-Products" target="_blank" rel="noopener">github.com/Camwong6/Player-Pulse</a></p>
 
 </main>
 
