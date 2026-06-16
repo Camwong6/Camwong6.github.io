@@ -97,7 +97,6 @@
     <p class="sidebar-label">On this page</p>
     <nav>
       <a href="#eda" class="sidebar-link">EDA</a>
-      <a href="#final-presentation" class="sidebar-link">Final Presentation</a>
       <a href="#ux-case-study" class="sidebar-link">UX Case Study</a>
     </nav>
   </aside>
@@ -115,12 +114,16 @@
     <p class="text-muted">Competitive Intelligence Insights Engine &nbsp;·&nbsp; UC Irvine MSBA Capstone 2026</p>
     <hr>
 
+    <div style="border-left: 4px solid #dc3545; background: #fff5f5; padding: 1rem 1.25rem; margin-bottom: 1.5rem; border-radius: 0 6px 6px 0;">
+      <p style="margin: 0;"><strong>Disclaimer: Some information including presentations, GitHub repositories, and other sensitive details have been intentionally excluded from this page to comply with an NDA that has been signed to protect the privacy of the client.</strong></p>
+    </div>
+
     <h2 class="section-title">Overview</h2>
-    <p>Blue Shield of California's Competitive Intelligence team reads earnings calls, SEC filings, press releases, and analyst reports across multiple insurers every week. Their weekly newsletter captured roughly one-eighth of the available transcript content. Synthesizing 720,000+ words of unstructured text manually takes more time than the team had.</p>
-    <p>We built a three-layer RAG system that lets an analyst run one search query instead of half a day in transcripts. It tracks 9 competitors simultaneously and cuts research time by 10x. Analysts spend that time interpreting findings, not hunting for them.</p>
+    <p>Blue Shield of California's Competitive Intelligence team processes large volumes of unstructured text from public sources each week to produce actionable insights for leadership. The manual effort required to synthesize this information left little time for strategic interpretation.</p>
+    <p>We built a RAG (Retrieval-Augmented Generation) system that lets an analyst run a single search query rather than spending hours manually reviewing documents. Analysts spend their time interpreting findings, not locating them.</p>
 
     <h2 class="section-title">The Challenge</h2>
-    <p>Blue Shield's CI team spent every week manually reading through eight competitors' SEC filings, earnings transcripts, and news coverage to produce a newsletter. Thousands of pages of financial and regulatory language had to become a two-page brief a senior stakeholder could act on.</p>
+    <p>Blue Shield's CI team spent every week manually reading through large volumes of publicly available documents to produce a competitive newsletter. Thousands of pages of financial and regulatory language had to become a concise brief a senior stakeholder could act on.</p>
     <p>Getting executives to trust AI-generated analysis from documents they never read was the central design challenge.</p>
 
     <h2 class="section-title">The Users</h2>
@@ -129,32 +132,36 @@
     <p>The tool had to work at two levels: granular enough for an analyst to verify a specific claim, clean enough for an executive to act on the summary.</p>
 
     <h2 class="section-title" id="eda">Exploratory Data Analysis</h2>
-    <p>We started by running EDA on earnings call transcripts from top competitors, cleaning and preprocessing the data to surface market share trends, demographic patterns, and competitive positioning signals. Those findings shaped what we indexed and how we structured retrieval.</p>
+    <p>We started by running EDA on a large corpus of publicly available documents, cleaning and preprocessing the data to surface trends, patterns, and competitive positioning signals. Those findings shaped what we indexed and how we structured retrieval.</p>
 
+    <!-- NDA HIDDEN: Remove the comment tags around the iframe below to restore the EDA presentation -->
+    <!--
     <div class="embed-wrapper">
       <iframe loading="lazy"
         src="https://www.canva.com/design/DAHGo4ycI-I/SopQB3kl3BWXuhwnTjglWA/view?embed"
         allowfullscreen allow="fullscreen">
       </iframe>
     </div>
+    -->
 
     <h2 class="section-title">What We Built</h2>
     <p>The system runs across three layers:</p>
     <ul>
-      <li><strong>Data ingestion:</strong> SEC filings, news articles, and real-time web results auto-pull on a 6-hour refresh cycle.</li>
-      <li><strong>RAG core:</strong> Hybrid semantic/keyword retrieval (60/40 split) searches 46,000+ indexed chunks. Analysts get relevant results whether they phrase a question precisely or loosely.</li>
+      <li><strong>Data ingestion:</strong> Public source documents are automatically ingested and kept current on a regular refresh cycle.</li>
+      <li><strong>RAG core:</strong> Hybrid semantic and keyword retrieval searches a large indexed corpus. Analysts get relevant results whether they phrase a question precisely or loosely.</li>
       <li><strong>AI generation:</strong> Claude Haiku and Sonnet return structured, source-cited answers grounded in the retrieved corpus. Response caching cuts redundant API calls.</li>
     </ul>
-    <p>We also built in a four-tier source credibility ranking, domain-specific prompts tuned for health insurance, proactive keyword alerts, and one-click PDF export.</p>
+    <p>The engine is designed to help analysts quickly locate, synthesize, and verify information from a broad set of public documents — surfacing relevant signals and generating source-cited summaries that leadership can act on with confidence.</p>
 
-    <h2 class="section-title" id="final-presentation">Final Presentation</h2>
-
+    <!-- NDA HIDDEN: Remove the comment tags around the iframe below to restore the final presentation -->
+    <!--
     <div class="embed-wrapper">
       <iframe loading="lazy"
         src="https://www.canva.com/design/DAHLy_APpNQ/6BFqAYfEYANoKEsdajKM7w/view?embed"
         allowfullscreen allow="fullscreen">
       </iframe>
     </div>
+    -->
 
     <h2 class="section-title" id="ux-case-study">UX Case Study</h2>
     <p>I designed four distinct surfaces, each built around a specific job the user needed to do.</p>
@@ -169,7 +176,7 @@
     <p>The chat interface takes free-form questions and returns sourced answers. The key call was inline citation chips: each [Source 4] tag sits at the specific claim it supports, not appended at the bottom. When citations are buried at the end, analysts skip them and take the answer at face value. Inline, verification is part of reading. The output fed real executive decisions, so the tool needed to hold up to scrutiny.</p>
 
     <h3 class="mt-4">4. Brief Generator <span class="text-muted fw-normal fs-6">(Synthesize)</span></h3>
-    <p>I designed the brief generator around the CI team's actual workflow. Every week they built the competitive newsletter from memory and scattered notes. This screen lets an analyst select competitors, choose focus areas (Financial Performance, Market Strategy, Medicare), set a date window, and generate a structured brief. The output appears next to the configuration panel for review without losing the selections. The controls stay explicit so the analyst decides what goes in, not the model.</p>
+    <p>I designed the brief generator around the CI team's actual workflow. Every week they built the competitive newsletter from memory and scattered notes. This screen lets an analyst select sources, choose focus areas, set a date window, and generate a structured brief. The output appears next to the configuration panel for review without losing the selections. The controls stay explicit so the analyst decides what goes in, not the model.</p>
 
     <h2 class="section-title">Key Design Decisions</h2>
     <p><strong>Inline citation chips.</strong> Analysts reading AI output tend to skip citations appended at the bottom and accept the answer. Placing each source tag at the specific claim it supports keeps verification part of reading. The output fed real strategic decisions, so I built the trust mechanisms in from the start.</p>
