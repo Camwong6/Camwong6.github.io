@@ -120,7 +120,7 @@
 
     <h2 class="section-title">Overview</h2>
     <p>Blue Shield of California's Competitive Intelligence team processes large volumes of unstructured text from public sources each week to produce actionable insights for leadership. The manual effort required to synthesize this information left little time for strategic interpretation.</p>
-    <p>We built a RAG (Retrieval-Augmented Generation) system that lets an analyst run a single search query rather than spending hours manually reviewing documents. Analysts spend their time interpreting findings, not locating them.</p>
+    <p>We built a RAG (Retrieval-Augmented Generation) system so an analyst can run a single query and spend their time interpreting findings instead of hunting through documents.</p>
 
     <h2 class="section-title">The Challenge</h2>
     <p>Blue Shield's CI team spent every week manually reading through large volumes of publicly available documents to produce a competitive newsletter. Thousands of pages of financial and regulatory language had to become a concise brief a senior stakeholder could act on.</p>
@@ -151,7 +151,6 @@
       <li><strong>RAG core:</strong> Hybrid semantic and keyword retrieval searches a large indexed corpus. Analysts get relevant results whether they phrase a question precisely or loosely.</li>
       <li><strong>AI generation:</strong> Claude Haiku and Sonnet return structured, source-cited answers grounded in the retrieved corpus. Response caching cuts redundant API calls.</li>
     </ul>
-    <p>The engine is designed to help analysts quickly locate, synthesize, and verify information from a broad set of public documents — surfacing relevant signals and generating source-cited summaries that leadership can act on with confidence.</p>
 
     <!-- NDA HIDDEN: Remove the comment tags around the iframe below to restore the final presentation -->
     <!--
@@ -187,7 +186,7 @@
     <p>I'd make the citation chips interactive. Right now they're static labels. Given more time, I'd make each chip clickable, expanding to show the relevant source excerpt in the chat pane without opening a separate view. That's the moment an analyst decides whether to trust the answer, and the current design leaves it unresolved.</p>
 
     <h2 class="section-title">The Broader Pattern</h2>
-    <p>Getting a user to trust and act on AI-generated answers from documents they never read is the core challenge in any AI search product. The citation chip, the sourced brief, the separation of monitoring from querying: these interaction patterns apply beyond health insurance. Products like Ask YouTube are working through the same problem right now.</p>
+    <p>Any AI search product runs into the same problem: getting someone to act on answers from documents they never read. The interaction patterns here — citation chips, sourced briefs, monitoring split from querying — aren't healthcare-specific. Ask YouTube is working through the same thing right now.</p>
 
     <h2 class="section-title">My Role</h2>
     <p>For the final presentation, I framed the problem narrative, structured the opening and the competitive parallel, and walked through the technical architecture across all three layers. I also worked on pipeline design and ran the demo sequence.</p>

@@ -39,10 +39,10 @@
   <hr>
 
   <h2 class="section-title">Overview</h2>
-  <p>This project focused on transforming APACC's manual, paper-based workflows into a data-driven system supported by relational database design and SQL-based analysis. The methodology emphasized structured data modeling, query-driven insights, and process optimization — translating raw data into process improvements and strategic recommendations. By integrating SQL with process analysis, the project moved APACC from reactive, manual workflows to a more scalable, data-informed operational model.</p>
+  <p>APACC ran on paper-based, manual processes. I designed a relational database and wrote SQL queries to surface patterns in their application and appointment data, then used those findings to recommend process changes: digital forms, better scheduling, and targeted staffing.</p>
 
   <h2 class="section-title">1. Data Structuring & Database Design</h2>
-  <p>A relational database schema was designed to centralize operational data across key entities including Clients, Applications, Appointments, and Staff — eliminating fragmented record-keeping and enabling efficient querying.</p>
+  <p>I designed a relational database schema to centralize operational data across Clients, Applications, Appointments, and Staff, replacing fragmented record-keeping with a structure that could answer real questions.</p>
   <ul>
     <li>Defined primary and foreign keys to establish relationships between entities</li>
     <li>Normalized tables to reduce redundancy and improve data integrity</li>
@@ -50,7 +50,6 @@
   </ul>
 
   <h2 class="section-title">2. Query Development & Exploratory Data Analysis</h2>
-  <p>SQL was used as the primary tool to explore patterns in daycare application and appointment data.</p>
 
   <p><strong>Age Distribution Analysis</strong></p>
   <pre class="bg-light p-3 rounded"><code>SELECT age, COUNT(age) AS client_frequency
@@ -105,7 +104,7 @@ ORDER BY visits_per_day, number_of_clients DESC;</code></pre>
     <li><strong>Age clustering</strong> → guided resource planning and staffing specialization</li>
     <li><strong>Application drop-offs</strong> → highlighted need for validation and clearer instructions</li>
   </ul>
-  <p>These findings justified the implementation of a database-backed appointment scheduling system and a digital application form with built-in validation — reducing manual inefficiencies and improving data accuracy.</p>
+  <p>These findings supported the case for a database-backed scheduling system and a digital application form with built-in validation.</p>
 
   <h2 class="section-title">4. Impact & Technical Takeaways</h2>
   <ul>

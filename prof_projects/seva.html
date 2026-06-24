@@ -45,7 +45,7 @@
   <h2 class="section-title">Overview</h2>
 
   <h2 class="section-title">Data Cleaning & Preparation Process</h2>
-  <p>A critical part of this project involved transforming raw, inconsistent survey data into a reliable dataset that could support accurate analysis. The data, provided by the Seva Foundation, came from multiple districts and collection periods, which introduced duplicates, inconsistencies, and formatting issues that needed to be addressed before visualization.</p>
+  <p>The survey data came from multiple districts and collection periods, introducing duplicates, inconsistencies, and formatting issues before any visualization could happen.</p>
 
   <h2 class="section-title">Data Processing in Snowflake</h2>
   <p>I worked with the dataset within Snowflake, where I performed the primary data cleaning using SQL.</p>
@@ -56,7 +56,7 @@
     <li>Filtering out incomplete or null entries</li>
     <li>Structuring the dataset for analysis and visualization</li>
   </ul>
-  <p>To improve efficiency, I leveraged Snowflake's built-in Copilot to:</p>
+  <p>I used Snowflake's built-in Copilot to:</p>
   <ul>
     <li>Generate initial SQL query drafts</li>
     <li>Refine transformation logic</li>
@@ -72,22 +72,13 @@
     <li>Checked for misspellings and inconsistent naming conventions</li>
     <li>Reviewed edge cases that required manual inspection</li>
   </ul>
-  <p>This step helped catch issues that are often easier to identify visually than through SQL alone.</p>
-
-  <h2 class="section-title">Ensuring Data Reliability</h2>
-  <p>By combining SQL-based cleaning with manual validation, I was able to:</p>
-  <ul>
-    <li>Eliminate duplicate and inconsistent records</li>
-    <li>Improve overall data integrity</li>
-    <li>Ensure the dataset was reliable for analysis</li>
-  </ul>
+  <p>Visual review catches things SQL misses: misspellings, naming inconsistencies, edge cases that only stand out when you scan a column.</p>
 
   <h2 class="section-title">Impact on Analysis</h2>
-  <p>This process directly strengthened the final outputs by:</p>
   <ul>
-    <li>Enabling more accurate geographic comparisons</li>
-    <li>Preventing misleading insights caused by data errors</li>
-    <li>Providing a clean foundation for Power BI dashboards</li>
+    <li>Geographic comparisons became more accurate across districts</li>
+    <li>Data errors that would have skewed findings were removed before visualization</li>
+    <li>The cleaned dataset fed directly into Power BI dashboards</li>
   </ul>
 
   <!-- NDA HIDDEN: Remove the comment tags around the iframe below to restore the presentation -->
