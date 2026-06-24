@@ -39,7 +39,7 @@
   <hr>
 
   <h2 class="section-title">Project Overview</h2>
-  <p>This project analyzed how Uber and Lyft pricing in Boston varies based on traffic conditions, time of day, and trip distance. The goal was to understand how these factors influence ride-share usage and consumer decision-making.</p>
+  <p>We mapped how Uber and Lyft price rides in Boston across distance, time of day, and traffic, then compared the two platforms on demand patterns and cost variability.</p>
   <ul>
     <li>Explored relationships between price, distance, and traffic patterns</li>
     <li>Evaluated how demand and peak hours impact pricing behavior</li>
@@ -47,7 +47,6 @@
   </ul>
 
   <h2 class="section-title">Data Sources & Integration</h2>
-  <p>We combined historical ride-share data with external APIs to better reflect real-world driving conditions and improve analytical accuracy.</p>
   <ul>
     <li>Used 2018 Uber & Lyft Boston dataset — 2018 was selected because COVID-era data is not representative of normal usage patterns, and more recent data is not publicly available due to privacy restrictions</li>
     <li>Integrated Google Distance Matrix API to calculate trip distances and travel times</li>
@@ -55,7 +54,6 @@
   </ul>
 
   <h2 class="section-title">Data Cleaning & Preparation</h2>
-  <p>The dataset required preprocessing to ensure accuracy and usability for analysis.</p>
   <ul>
     <li>Reduced dataset from 57 to 14 relevant columns</li>
     <li>Sampled data to handle large file size constraints</li>
@@ -64,7 +62,6 @@
   </ul>
 
   <h2 class="section-title">Exploratory Data Analysis</h2>
-  <p>We conducted multiple analyses to understand pricing patterns and compare ride-share services.</p>
   <ul>
     <li>Calculated average prices by service type to establish a baseline comparison</li>
     <li>Grouped data by hour and service type to identify pricing trends</li>
@@ -73,7 +70,6 @@
   </ul>
 
   <h2 class="section-title">Distance & Pricing Relationship</h2>
-  <p>We analyzed how trip distance impacts ride pricing using both dataset values and API-generated distances.</p>
   <ul>
     <li>Identified a positive relationship between distance and price</li>
     <li>Observed high variability for shorter trips, indicating non-linear pricing</li>
@@ -81,7 +77,6 @@
   </ul>
 
   <h2 class="section-title">Time-Based Trends & Demand</h2>
-  <p>Ride frequency and pricing patterns vary depending on time of day and demand levels.</p>
   <ul>
     <li>Peak ride demand occurs during <strong>late night (12 AM – 2 AM)</strong> and <strong>evening commute (5 PM – 7 PM)</strong></li>
     <li>Uber shows more pronounced demand spikes, while Lyft remains more consistent</li>
@@ -89,12 +84,10 @@
   </ul>
 
   <h2 class="section-title">Key Insights</h2>
-  <p>This analysis highlights how multiple factors interact to influence ride-share pricing and user behavior.</p>
   <ul>
-    <li>Pricing is driven by distance, time of day, and traffic conditions</li>
-    <li>Demand fluctuations and surge pricing significantly impact cost variability</li>
-    <li>Uber and Lyft demonstrate different usage and demand patterns</li>
-    <li>Data-driven insights can support more effective pricing strategies and user decisions</li>
+    <li>Pricing is driven by distance, time of day, and traffic — no single factor explains variability alone</li>
+    <li>Surge pricing amplifies cost differences during the 12–2 AM and 5–7 PM demand windows</li>
+    <li>Uber shows sharper demand spikes; Lyft stays flatter and ran slightly cheaper on average in this dataset</li>
   </ul>
 
   <h2 class="section-title">Presentation</h2>

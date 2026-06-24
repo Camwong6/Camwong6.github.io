@@ -39,7 +39,7 @@
   <hr>
 
   <h2 class="section-title">Project Overview</h2>
-  <p>This project focused on identifying the key factors that distinguish high-demand from low-demand Airbnb listings across major California cities. The goal was to help hosts and investors better understand what drives booking activity and optimize listing performance.</p>
+  <p>Across ~95,000 listings in Los Angeles, San Francisco, and San Diego, we classified listings as high-demand or low-demand and measured which features drive the difference.</p>
   <ul>
     <li>Analyzed pricing, location, and listing characteristics</li>
     <li>Built models to classify high-demand vs. low-demand listings</li>
@@ -47,8 +47,7 @@
   </ul>
 
   <h2 class="section-title">Data Sources & Scope</h2>
-  <p>We worked with large-scale public Airbnb datasets across multiple markets to ensure robust analysis.</p>
-  <p>Combined data from:</p>
+  <p>Dataset:</p>
   <ul>
     <li>Los Angeles (~45K listings)</li>
     <li>San Francisco (~36K listings)</li>
@@ -60,7 +59,6 @@
   </ul>
 
   <h2 class="section-title">Data Cleaning & Feature Engineering</h2>
-  <p>Significant preprocessing and feature engineering were required to prepare the dataset for modeling.</p>
   <ul>
     <li>Cleaned price data by removing currency symbols and formatting</li>
     <li>Handled missing values: numerical → filled with median; categorical → filled with mode or "Unknown"</li>
@@ -69,7 +67,6 @@
   </ul>
 
   <h2 class="section-title">Model Development & Evaluation</h2>
-  <p>We built and compared multiple models to predict listing demand and evaluate performance.</p>
   <ul>
     <li>Logistic Regression (baseline): Accuracy <strong>68.89%</strong>, AUC <strong>72.41%</strong></li>
     <li>Random Forest (final model): Accuracy <strong>93.28%</strong>, AUC <strong>97.90%</strong></li>
@@ -77,7 +74,6 @@
   </ul>
 
   <h2 class="section-title">Key Drivers of Demand</h2>
-  <p>The analysis identified the most important factors influencing Airbnb listing performance.</p>
   <ul>
     <li><strong>Number of reviews</strong> — strongest indicator of trust and popularity</li>
     <li><strong>Minimum nights & availability</strong> — shorter stays and higher availability increase demand</li>
@@ -85,15 +81,13 @@
   </ul>
 
   <h2 class="section-title">Insights & Model Performance</h2>
-  <p>The Random Forest model demonstrated strong predictive capability in distinguishing listing demand levels.</p>
   <ul>
-    <li>High AUC score indicates excellent classification performance</li>
-    <li>Model performs well across both high-demand and low-demand listings</li>
-    <li>Confirms that demand can be effectively predicted using behavioral and listing features</li>
+    <li>AUC of 97.90% indicates near-perfect class separation</li>
+    <li>Performance is consistent across both demand classes</li>
+    <li>Demand is predictable from behavioral and listing features alone</li>
   </ul>
 
   <h2 class="section-title">Recommendations</h2>
-  <p>Based on the analysis, we developed actionable strategies for both hosts and customers.</p>
   <p>For Hosts:</p>
   <ul>
     <li>Encourage reviews to build social proof</li>
@@ -109,11 +103,10 @@
   </ul>
 
   <h2 class="section-title">Key Insights</h2>
-  <p>This project demonstrates how machine learning can be used to uncover actionable insights in real-world marketplaces.</p>
   <ul>
-    <li>Demand is driven by a combination of trust signals, pricing strategy, and availability</li>
-    <li>Ensemble models like Random Forest provide high predictive accuracy for classification tasks</li>
-    <li>Data-driven insights can support better decision-making for both hosts and platform stakeholders</li>
+    <li>Demand is driven by trust signals (reviews), pricing, and availability together — no single factor dominates</li>
+    <li>Random Forest at 93.28% accuracy vs. logistic regression at 68.89% shows ensemble methods are worth the complexity here</li>
+    <li>Review count as the top feature suggests social proof matters more to bookers than price or location alone</li>
   </ul>
 
   <h2 class="section-title">Presentation</h2>
