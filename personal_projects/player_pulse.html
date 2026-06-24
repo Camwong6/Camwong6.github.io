@@ -136,6 +136,10 @@
     <li><strong>avg_session_mins, avg_rank_score, avg_sessions_per_week</strong></li>
   </ol>
 
+  <div style="max-width: 800px; margin: 2rem auto;">
+    <img src="../Project_Thumbnails/random_forest_results.png" alt="Random Forest Results — Feature Importance and Model Evaluation" style="width: 100%; border-radius: 8px;">
+  </div>
+
   <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Interpretation</h3>
   <p>Classification outperformed regression. Identifying likely spenders is tractable; predicting exact dollar amounts is not. The Random Forest validates and extends the SQL findings — adding weighting to determine which features matter most when all are considered simultaneously. Long-term engagement (retention, account age, seasons active) is the dominant monetization signal across both models. Esports engagement functions as an ecosystem signal, not a purchase trigger: SQL showed watchers convert more, but the model showed other engagement variables explain most of that conversion. Among spenders, watch hours predict spend depth.</p>
 
