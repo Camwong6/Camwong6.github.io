@@ -118,6 +118,10 @@
       <p style="margin: 0;"><strong>Disclaimer: Some information including presentations, GitHub repositories, and other sensitive details have been intentionally excluded from this page to comply with an NDA that has been signed to protect the privacy of the client.</strong></p>
     </div>
 
+    <div class="mb-4">
+      <img src="blue_shield_images/hero_dashboard.png" alt="CI Insights Engine dashboard shown on a laptop, with the Competitive Threat Index, topic coverage, and Signal Momentum Trend" style="width: 100%; border-radius: 8px;">
+    </div>
+
     <h2 class="section-title">Overview</h2>
     <p>Blue Shield of California's Competitive Intelligence team processes large volumes of unstructured text from public sources each week to produce actionable insights for leadership. The manual effort required to synthesize this information left little time for strategic interpretation.</p>
     <p>We built a RAG (Retrieval-Augmented Generation) system so an analyst can run a single query and spend their time interpreting findings instead of hunting through documents.</p>
@@ -126,6 +130,10 @@
     <p>Blue Shield's CI team spent every week manually reading through large volumes of publicly available documents to produce a competitive newsletter. Thousands of pages of financial and regulatory language had to become a concise brief a senior stakeholder could act on.</p>
     <p>Getting executives to trust AI-generated analysis from documents they never read was the central design challenge.</p>
 
+    <div class="mb-4">
+      <img src="blue_shield_images/before_after.png" alt="Before and after comparison: manual transcript downloads, skimming, and copy-paste replaced by real-time indexing, 30-second insights, one-click PDF briefs, and keyword alerts" style="width: 100%; border-radius: 8px;">
+    </div>
+
     <h2 class="section-title">The Users</h2>
     <p><strong>Primary:</strong> The CI team. They knew the source material well but spent too much time locating and synthesizing it.</p>
     <p><strong>Secondary:</strong> Blue Shield leadership. They consumed the output without touching the underlying data.</p>
@@ -133,6 +141,10 @@
 
     <h2 class="section-title" id="eda">Exploratory Data Analysis</h2>
     <p>We started by running EDA on a large corpus of publicly available documents, cleaning and preprocessing the data to surface trends, patterns, and competitive positioning signals. Those findings shaped what we indexed and how we structured retrieval.</p>
+
+    <div class="mb-4">
+      <img src="blue_shield_images/data_cleaning_pipeline.png" alt="Five-step data cleaning pipeline: raw transcript collection, text preprocessing, noise and stopword removal, structured text output, and keyword extraction" style="width: 100%; border-radius: 8px;">
+    </div>
 
     <!-- NDA HIDDEN: Remove the comment tags around the iframe below to restore the EDA presentation -->
     <!--
@@ -152,6 +164,10 @@
       <li><strong>AI generation:</strong> Claude Haiku and Sonnet return structured, source-cited answers grounded in the retrieved corpus. Response caching cuts redundant API calls.</li>
     </ul>
 
+    <div class="mb-4">
+      <img src="blue_shield_images/technical_highlights.png" alt="Three-layer architecture: data ingestion refreshed every 6 hours, a RAG core with hybrid semantic and keyword retrieval over 46K+ indexed chunks, and AI generation with source citations and response caching" style="width: 100%; border-radius: 8px;">
+    </div>
+
     <!-- NDA HIDDEN: Remove the comment tags around the iframe below to restore the final presentation -->
     <!--
     <div class="embed-wrapper">
@@ -166,27 +182,23 @@
     <p>I designed four distinct surfaces, each built around a specific job the user needed to do.</p>
 
     <h3 class="mt-4">1. Signal Dashboard <span class="text-muted fw-normal fs-6">(Monitor)</span></h3>
-    <p>The overview shows a Competitive Threat Index ranking competitors by signal volume, a topic-level coverage breakdown, and a Signal Momentum Trend line. An analyst checking in each morning can see in seconds whether activity is spiking and where to focus. This screen carries no AI output, only structured signal data. I wanted the team opening it daily as a habit, not only when someone needed to write a brief.</p>
+    <p>The overview shows a Competitive Threat Index ranking competitors by signal volume, a topic-level coverage breakdown, and a Signal Momentum Trend line. An analyst checking in each morning can see in seconds whether activity is spiking and where to focus. This screen shows structured signal data with no AI output, because I wanted the team opening it every morning whether or not anyone was writing a brief that week.</p>
 
     <h3 class="mt-4">2. Competitor Profiles <span class="text-muted fw-normal fs-6">(Explore)</span></h3>
     <p>Each competitor gets a profile card showing revenue, member count, and MLR. Clicking through opens a detail view with a one-paragraph positioning summary, a high/low-priority Threats to Blue Shield section, and a Strengths / Weaknesses / Recent Strategic Moves breakdown. Financials sit at the card level because that's the first thing the CI team reaches for when sizing up a competitor. Strategic interpretation goes one level deeper, in the detail view where readers are already engaged.</p>
 
     <h3 class="mt-4">3. Ask AI Chat <span class="text-muted fw-normal fs-6">(Query)</span></h3>
-    <p>The chat interface takes free-form questions and returns sourced answers. The key call was inline citation chips: each [Source 4] tag sits at the specific claim it supports, not appended at the bottom. When citations are buried at the end, analysts skip them and take the answer at face value. Inline, verification is part of reading. The output fed real executive decisions, so the tool needed to hold up to scrutiny.</p>
+    <p>The chat interface takes free-form questions and returns sourced answers. The key call was inline citation chips: each [Source 4] tag sits at the specific claim it supports instead of being appended at the bottom. When citations sit at the end, analysts skip them and take the answer at face value; inline, checking a source becomes part of reading. The output fed real executive decisions, so it needed to hold up to scrutiny.</p>
 
     <h3 class="mt-4">4. Brief Generator <span class="text-muted fw-normal fs-6">(Synthesize)</span></h3>
-    <p>I designed the brief generator around the CI team's actual workflow. Every week they built the competitive newsletter from memory and scattered notes. This screen lets an analyst select sources, choose focus areas, set a date window, and generate a structured brief. The output appears next to the configuration panel for review without losing the selections. The controls stay explicit so the analyst decides what goes in, not the model.</p>
+    <p>I designed the brief generator around the CI team's actual workflow. Every week they built the competitive newsletter from memory and scattered notes. This screen lets an analyst select sources, choose focus areas, set a date window, and generate a structured brief. The output appears next to the configuration panel for review without losing the selections. The controls stay explicit: the analyst chooses what goes into the brief, and the model only writes it up.</p>
 
     <h2 class="section-title">Key Design Decisions</h2>
-    <p><strong>Inline citation chips.</strong> Analysts reading AI output tend to skip citations appended at the bottom and accept the answer. Placing each source tag at the specific claim it supports keeps verification part of reading. The output fed real strategic decisions, so I built the trust mechanisms in from the start.</p>
-    <p><strong>Four distinct surfaces.</strong> The early spec was a single chat interface. I separated monitoring, exploration, querying, and synthesis into their own screens because each task starts from a different cognitive state. An analyst checking morning signals has no use for a query box. A focused search should happen on its own screen.</p>
+    <p><strong>Four distinct surfaces instead of one chat box.</strong> The early spec was a single chat interface. I split monitoring, exploration, querying, and synthesis into separate screens because an analyst checking morning signals is doing a different job than one writing a brief, and forcing both through a query box serves neither.</p>
     <p><strong>Revenue and member count at the card level.</strong> Watching the CI team evaluate competitors, I saw them reach for financials first as a credibility baseline. Surfacing those metrics at the card level freed the detail view to carry deeper interpretive content without losing the reader's attention.</p>
 
     <h2 class="section-title">What I'd Change</h2>
     <p>I'd make the citation chips interactive. Right now they're static labels. Given more time, I'd make each chip clickable, expanding to show the relevant source excerpt in the chat pane without opening a separate view. That's the moment an analyst decides whether to trust the answer, and the current design leaves it unresolved.</p>
-
-    <h2 class="section-title">The Broader Pattern</h2>
-    <p>Any AI search product runs into the same problem: getting someone to act on answers from documents they never read. The interaction patterns here — citation chips, sourced briefs, monitoring split from querying — aren't healthcare-specific. Ask YouTube is working through the same thing right now.</p>
 
     <h2 class="section-title">My Role</h2>
     <p>For the final presentation, I framed the problem narrative, structured the opening and the competitive parallel, and walked through the technical architecture across all three layers. I also worked on pipeline design and ran the demo sequence.</p>
@@ -203,7 +215,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   const sidebarLinks = document.querySelectorAll('.sidebar-link');
-  const sectionIds = ['eda', 'final-presentation', 'ux-case-study'];
+  const sectionIds = ['eda', 'ux-case-study'];
   const sections = sectionIds.map(id => document.getElementById(id));
 
   function updateActive() {

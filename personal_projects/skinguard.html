@@ -56,11 +56,11 @@
   </div>
 
   <h2 class="section-title">Overview</h2>
-  <p>SkinGuard is an AI-powered skin cancer screening tool that analyzes dermoscopy and clinical images to assess risk for three malignant conditions: <strong>melanoma</strong>, <strong>basal cell carcinoma</strong>, and <strong>actinic keratosis / squamous cell carcinoma</strong>. The system produces probability estimates for each condition and categorizes overall risk as low, medium, or high — providing an accessible first-pass screening aid for users who may not have immediate access to a dermatologist.</p>
+  <p>SkinGuard is an AI-powered skin cancer screening tool that analyzes dermoscopy and clinical images to assess risk for three malignant conditions: <strong>melanoma</strong>, <strong>basal cell carcinoma</strong>, and <strong>actinic keratosis / squamous cell carcinoma</strong>. The system produces probability estimates for each condition and categorizes overall risk as low, medium, or high. The goal is a first-pass screening aid for people who can't quickly get in front of a dermatologist.</p>
   <p>The project is deployed as a web application and available on both desktop and mobile browsers. Note: this tool is designed for research and educational purposes only and is not a substitute for professional medical diagnosis.</p>
 
   <h2 class="section-title">Technical Approach</h2>
-  <p>The pipeline is built around <strong>Google Gemini Vision API</strong>, which powers the image analysis and probability scoring. Before any image reaches the model, an automatic quality assessment step rejects poor-quality submissions — blurry, low-resolution, or incorrectly formatted images — ensuring the model only processes actionable input.</p>
+  <p>The pipeline is built around <strong>Google Gemini Vision API</strong>, which powers the image analysis and probability scoring. Before any image reaches the model, an automatic quality assessment step rejects blurry, low-resolution, or incorrectly formatted submissions, so the model only sees usable input.</p>
   <ul>
     <li>Backend developed in <strong>Python 3.10+</strong>, handling image ingestion, quality checks, API calls, and response formatting</li>
     <li>Frontend built with <strong>JavaScript, HTML, and CSS</strong> for a responsive, accessible interface supporting JPG, PNG, and WebP uploads</li>
@@ -69,8 +69,8 @@
   </ul>
 
   <h2 class="section-title">Key Takeaways</h2>
-  <p>Deploying a health-adjacent AI tool forced hard tradeoffs early: image quality control, uncertainty communication, and clinical disclaimers had to be load-bearing from day one, not added later as polish.</p>
-  <p>Keeping the Python API layer decoupled from the UI made iterating on both significantly faster — changes to the model pipeline didn't require touching the frontend and vice versa.</p>
+  <p>Deploying a health-adjacent AI tool forced hard tradeoffs early. Image quality control, uncertainty communication, and clinical disclaimers all had to work from the first version; none of them could be bolted on later as polish.</p>
+  <p>Keeping the Python API layer decoupled from the UI made iterating on both faster, since changes to the model pipeline never touched the frontend and vice versa.</p>
 
   <h2 class="section-title">GitHub</h2>
   <p><a href="https://github.com/Camwong6/SkinGuard" target="_blank" rel="noopener">github.com/Camwong6/SkinGuard</a></p>

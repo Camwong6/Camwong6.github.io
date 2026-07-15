@@ -35,7 +35,7 @@
   </nav>
 
   <h1>Player Pulse</h1>
-  <p class="text-muted">Valorant Customer Spend Analysis &mdash; Personal Project</p>
+  <p class="text-muted">Valorant Customer Spend Analysis &nbsp;·&nbsp; Personal Project</p>
   <hr>
 
   <div class="mb-3">
@@ -60,19 +60,19 @@
   </p>
 
   <h2 class="section-title">Overview</h2>
-  <p>Player Pulse is a lifecycle segmentation and spend prediction framework built on synthetic Valorant-style player data. The project simulates 100,000 players across five seasons (2021–2025), generating over 500,000 transactions and more than $35 million in synthetic revenue. The pipeline moves from data generation through SQL exploration, correlation analysis, RFM segmentation, Random Forest modeling, and Tableau visualization — treating the dataset as a business simulation for how a live-service game analytics team might approach monetization and retention strategy.</p>
+  <p>Player Pulse is a lifecycle segmentation and spend prediction framework built on synthetic Valorant-style player data. The project simulates 100,000 players across five seasons (2021–2025), generating over 500,000 transactions and more than $35 million in synthetic revenue. The pipeline moves from data generation through SQL exploration, correlation analysis, RFM segmentation, Random Forest modeling, and Tableau visualization. I treated the dataset as a business simulation: how would a live-service game analytics team approach monetization and retention?</p>
 
   <h2 class="section-title">Data</h2>
   <p>Two synthetic datasets were generated to reflect realistic live-service game dynamics:</p>
   <ul>
-    <li><strong>Transaction data</strong> — 500,000+ rows covering purchases from 2021–2025. Players were assigned to four spend tiers at generation: Non-Spender (40%), Casual (35%), Mid-Tier (20%), and Whale (5%). Seasonal weighting concentrates 35% of revenue in September–December to mirror real game release cycles.</li>
-    <li><strong>Player behavior data</strong> — one row per active user-season, tracking rank, session depth, esports viewership, agent diversity, cross-platform hours, and 30-day retention across nine rank tiers (Iron through Radiant).</li>
+    <li><strong>Transaction data:</strong> 500,000+ rows covering purchases from 2021–2025. Players were assigned to four spend tiers at generation: Non-Spender (40%), Casual (35%), Mid-Tier (20%), and Whale (5%). Seasonal weighting concentrates 35% of revenue in September–December to mirror real game release cycles.</li>
+    <li><strong>Player behavior data:</strong> one row per active user-season, tracking rank, session depth, esports viewership, agent diversity, cross-platform hours, and 30-day retention across nine rank tiers (Iron through Radiant).</li>
   </ul>
 
   <h2 class="section-title">Exploratory Analysis</h2>
 
   <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Correlation Heatmap</h3>
-  <p>A correlation heatmap across all behavioral and transaction variables surfaced five signals worth investigating. The clearest positives: transaction variables correlated with retention and account age, agent diversity correlated with seasons active, and esports viewership correlated with session frequency and account longevity. The clearest negatives: transaction recency negatively correlated with all spend metrics — players who hadn't purchased recently had spent significantly less overall — and cohort year negatively correlated with seasons active and account age, which is expected by construction (newer players have had less time to accumulate tenure) and not a real business insight.</p>
+  <p>A correlation heatmap across all behavioral and transaction variables surfaced five signals worth investigating. The clearest positives: transaction variables correlated with retention and account age, agent diversity correlated with seasons active, and esports viewership correlated with session frequency and account longevity. The clearest negatives: transaction recency negatively correlated with all spend metrics (players who hadn't purchased recently had spent significantly less overall), and cohort year negatively correlated with seasons active and account age. That second one is expected by construction, since newer players have had less time to accumulate tenure, so I didn't treat it as a business insight.</p>
   <p>The most actionable signal on the board was the 0.74 correlation between average rank score and average session minutes. Higher-ranked players play significantly longer sessions, and both variables showed moderate spend correlation individually. Testing them together as an interaction became one of the SQL questions.</p>
 
   <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">SQL Business Questions</h3>
@@ -92,73 +92,73 @@
       </tr>
       <tr>
         <td>Do esports watchers spend more despite similar session times?</td>
-        <td>Esports watchers are about twice as active and <strong>19.2% more likely to spend</strong>. Controlling for longevity (spend per season), the gap narrows — much of the spend difference is explained by watchers simply sticking around longer</td>
+        <td>Esports watchers are about twice as active and <strong>19.2% more likely to spend</strong>. Controlling for longevity (spend per season), the gap narrows: much of the spend difference comes from watchers simply sticking around longer</td>
       </tr>
       <tr>
         <td>Does agent diversity predict long-term engagement?</td>
-        <td>One-trick players (1–2 agents) burn out faster and spend significantly less. Most players use 3+ agents; the one-trick segment is small but a viable re-engagement target — similar to how League of Legends uses champion bans to force players out of comfort zones</td>
+        <td>One-trick players (1–2 agents) burn out faster and spend significantly less. Most players use 3+ agents; the one-trick segment is small but a viable re-engagement target, similar to how League of Legends uses champion bans to force players out of comfort zones</td>
       </tr>
       <tr>
         <td>Who are the at-risk high-value players?</td>
-        <td>Active players spend far more on average than churned players. Churned players average ~5 lifetime transactions — roughly matching the number of primary weapon slots in Valorant's strategic meta — suggesting cosmetic fatigue may be a driver. Adding meta-relevant weapon skins or new animation styles could reactivate this segment</td>
+        <td>Active players spend far more on average than churned players. Churned players average ~5 lifetime transactions, roughly matching the number of primary weapon slots in Valorant's strategic meta, which suggests cosmetic fatigue may be a driver. Adding meta-relevant weapon skins or new animation styles could reactivate this segment</td>
       </tr>
       <tr>
         <td>Does rank + session depth together predict spend better than either alone?</td>
-        <td>High-rank, long-session players are the biggest spenders. The one exception: high-rank, short-session players show a slight retention dip — likely competitive imports from Overwatch or CS:GO who play Valorant occasionally rather than as their main game</td>
+        <td>High-rank, long-session players are the biggest spenders. The one exception: high-rank, short-session players show a slight retention dip, likely competitive imports from Overwatch or CS:GO who play Valorant occasionally rather than as their main game</td>
       </tr>
     </tbody>
   </table>
 
   <h2 class="section-title">RFM Segmentation</h2>
-  <p>Using the transaction data, each player was scored on <strong>Recency</strong> (days since last purchase), <strong>Frequency</strong> (transaction count), and <strong>Monetary</strong> (total spend) — each on a 1–5 quintile scale. Composite scores mapped players into eight named segments: Champion, Loyal Player, High Spender, New Player, At Risk, Lapsing, Churned, and Casual/Non-Spender. The merged behavioral + RFM dataset was exported for downstream modeling and Tableau visualization.</p>
+  <p>Using the transaction data, each player was scored on <strong>Recency</strong> (days since last purchase), <strong>Frequency</strong> (transaction count), and <strong>Monetary</strong> (total spend), each on a 1–5 quintile scale. Composite scores mapped players into eight named segments: Champion, Loyal Player, High Spender, New Player, At Risk, Lapsing, Churned, and Casual/Non-Spender. The merged behavioral + RFM dataset was exported for downstream modeling and Tableau visualization.</p>
 
   <h2 class="section-title">Random Forest Modeling</h2>
-  <p>After segmentation, two Random Forest models tested whether behavioral signals could predict monetization outcomes. Spend-derived features (transaction count, recency days, average spend per transaction, max single transaction) were excluded from both models to prevent leakage — the models learn from behavior, not from spending history.</p>
+  <p>After segmentation, two Random Forest models tested whether behavioral signals could predict monetization outcomes. Spend-derived features (transaction count, recency days, average spend per transaction, max single transaction) were excluded from both models to prevent leakage, so the models learn from behavior instead of relearning spending history.</p>
 
-  <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Model 1 — Spend Propensity Classifier</h3>
+  <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Model 1: Spend Propensity Classifier</h3>
   <p><strong>Question:</strong> Will a player spend at all? | <strong>ROC-AUC: 0.7316</strong></p>
   <p>The model distinguishes spenders from non-spenders with moderate accuracy. <code>class_weight='balanced'</code> corrects for the roughly 40% spender rate in the dataset. Top features by importance:</p>
   <ol>
-    <li><strong>avg_retention</strong> — players who stay engaged convert at higher rates</li>
-    <li><strong>account_age_days</strong> — longer tenure means more exposure to cosmetics, battle passes, and event offers</li>
-    <li><strong>seasons_active</strong> — engagement across multiple seasons tracks with conversion</li>
+    <li><strong>avg_retention</strong>: players who stay engaged convert at higher rates</li>
+    <li><strong>account_age_days</strong>: longer tenure means more exposure to cosmetics, battle passes, and event offers</li>
+    <li><strong>seasons_active</strong>: engagement across multiple seasons tracks with conversion</li>
     <li><strong>cohort_year, avg_session_mins</strong></li>
   </ol>
-  <p><code>is_esports_watcher</code> ranked low despite SQL showing esports watchers have a 19.2% higher spender rate. The Random Forest result suggests esports watching predicts spending indirectly — through retention, account age, and seasons active — not independently. Watchers spend more because they're more engaged overall, not because watching esports directly triggers purchases.</p>
+  <p><code>is_esports_watcher</code> ranked low despite SQL showing esports watchers have a 19.2% higher spender rate. The Random Forest result suggests esports watching predicts spending indirectly, through retention, account age, and seasons active. Watchers spend more because they're more engaged overall, and the engagement variables absorb most of that signal.</p>
 
-  <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Model 2 — Spend Amount Regressor</h3>
+  <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Model 2: Spend Amount Regressor</h3>
   <p><strong>Question:</strong> For players who do spend, how much? | <strong>R²: 0.1079 &nbsp;|&nbsp; MAE: $695 &nbsp;|&nbsp; RMSE: $1,361</strong></p>
-  <p>The low R² means behavioral features explain only a small fraction of spend variance among spenders. This fits how free-to-play monetization actually works — spend amount depends on cosmetic preferences, bundle timing, income, and emotional attachment to specific skins, none of which appear in behavioral logs. Top features:</p>
+  <p>The low R² means behavioral features explain only a small fraction of spend variance among spenders. This fits how free-to-play monetization actually works: spend amount depends on cosmetic preferences, bundle timing, income, and emotional attachment to specific skins, none of which appear in behavioral logs. Top features:</p>
   <ol>
-    <li><strong>account_age_days</strong> — longer-tenured players spend more in absolute terms</li>
+    <li><strong>account_age_days</strong>: longer-tenured players spend more in absolute terms</li>
     <li><strong>avg_retention</strong></li>
-    <li><strong>avg_esports_watch_hrs</strong> — a shift from Model 1, where binary watcher status ranked low. Watch hours predict spend depth among players who already pay; deeper ecosystem involvement correlates with higher player value</li>
+    <li><strong>avg_esports_watch_hrs</strong>: a shift from Model 1, where binary watcher status ranked low. Watch hours predict spend depth among players who already pay; deeper ecosystem involvement correlates with higher player value</li>
     <li><strong>avg_session_mins, avg_rank_score, avg_sessions_per_week</strong></li>
   </ol>
 
   <div style="max-width: 800px; margin: 2rem auto;">
-    <img src="../Project_Thumbnails/random_forest_results.png" alt="Random Forest Results — Feature Importance and Model Evaluation" style="width: 100%; border-radius: 8px;">
+    <img src="../Project_Thumbnails/random_forest_results.png" alt="Random Forest Results: Feature Importance and Model Evaluation" style="width: 100%; border-radius: 8px;">
   </div>
 
   <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Interpretation</h3>
-  <p>Classification outperformed regression. Identifying likely spenders is tractable; predicting exact dollar amounts is not. The Random Forest validates and extends the SQL findings — adding weighting to determine which features matter most when all are considered simultaneously. Long-term engagement (retention, account age, seasons active) is the dominant monetization signal across both models. Esports engagement functions as an ecosystem signal, not a purchase trigger: SQL showed watchers convert more, but the model showed other engagement variables explain most of that conversion. Among spenders, watch hours predict spend depth.</p>
+  <p>Classification outperformed regression. Identifying likely spenders is tractable; predicting exact dollar amounts is not. The Random Forest also extends the SQL findings by weighing every feature at once, and long-term engagement (retention, account age, seasons active) came out as the dominant monetization signal in both models. Esports engagement works as an ecosystem signal: SQL showed watchers convert more, but the model showed other engagement variables explain most of that conversion. Among spenders, watch hours predict spend depth.</p>
 
   <h2 class="section-title">Business Recommendations</h2>
   <ul>
-    <li><strong>High-retention non-spenders</strong> — retention is the strongest conversion predictor. High-retention players who haven't purchased yet are the most actionable acquisition segment. Target with first-purchase campaigns: beginner bundles, personalized store offers, limited-time discounts.</li>
-    <li><strong>Esports-engaged spenders</strong> — players with high watch hours who already spend show greater revenue potential. VCT-themed cosmetics, team bundles, and event-based exclusives are the right product vehicles for this group.</li>
-    <li><strong>Long-tenure, high-engagement players</strong> — old accounts with strong retention, multiple active seasons, and long sessions represent the highest-value tier. Loyalty programs, premium cosmetics, and proactive reactivation campaigns if purchase frequency starts declining.</li>
+    <li><strong>High-retention non-spenders:</strong> retention is the strongest conversion predictor, so high-retention players who haven't purchased yet are the most actionable acquisition segment. Target them with first-purchase campaigns like beginner bundles, personalized store offers, and limited-time discounts.</li>
+    <li><strong>Esports-engaged spenders:</strong> players with high watch hours who already spend show greater revenue potential. VCT-themed cosmetics, team bundles, and event-based exclusives are the right product vehicles for this group.</li>
+    <li><strong>Long-tenure, high-engagement players:</strong> old accounts with strong retention, multiple active seasons, and long sessions represent the highest-value tier. They warrant loyalty programs, premium cosmetics, and a reactivation campaign if purchase frequency starts declining.</li>
   </ul>
 
   <h2 class="section-title">Limitations</h2>
   <ul>
-    <li>The dataset is synthetic. These results are a portfolio-level business simulation, not a model of real Riot player behavior.</li>
+    <li>The dataset is synthetic. These results demonstrate the analysis workflow; they say nothing about real Riot player behavior.</li>
     <li>Key spend drivers are missing from the behavioral logs: cosmetic preferences, income, store rotation history, battle pass ownership, discount exposure, and favorite agents/weapons. The regression's low R² reflects those gaps directly.</li>
     <li>Retention, account age, and seasons active are correlated with each other. Random Forest distributes importance across related features, so the exact feature ranking matters less than the cluster it represents: long-term engagement is the signal.</li>
   </ul>
 
   <h2 class="section-title">Conclusion</h2>
-  <p>Behavioral data predicts conversion better than spend amount. Retention, account age, and seasons active are the strongest signals across both models. Esports watch hours matter more for spend depth than initial conversion. Players who stay active longer, play across more seasons, and follow the esports scene become the most valuable customers. In a live-service game, retention and monetization aren't separate strategies.</p>
+  <p>Behavioral data predicts conversion better than spend amount. Retention, account age, and seasons active are the strongest signals across both models, and esports watch hours matter more for spend depth than for initial conversion. Players who stay active longer, play across more seasons, and follow the esports scene become the most valuable customers, which is why a live-service team should treat retention work as monetization work.</p>
 
   <h2 class="section-title">GitHub</h2>
   <p><a href="https://github.com/Camwong6/Player-Pulse-A-Lifecycle-Segmentation-Framework-for-Live-Service-Products" target="_blank" rel="noopener">github.com/Camwong6/Player-Pulse</a></p>

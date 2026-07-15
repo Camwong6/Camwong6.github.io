@@ -35,20 +35,15 @@
   </nav>
 
   <h1>Twitch Analytics</h1>
-  <p class="text-muted">Real-Time Streaming Analytics Pipeline &mdash; Personal Project</p>
+  <p class="text-muted">Real-Time Streaming Analytics Pipeline &nbsp;·&nbsp; Personal Project</p>
   <hr>
 
   <div class="mb-3">
     <span class="skill-tag">Python</span>
     <span class="skill-tag">SQL</span>
-    <span class="skill-tag">Data Analysis</span>
-    <span class="skill-tag">Database Design</span>
-    <span class="skill-tag">Full-Stack</span>
-    <span class="skill-tag">Next.js</span>
     <span class="skill-tag">PostgreSQL</span>
-    <span class="skill-tag">Supabase</span>
-    <span class="skill-tag">Vercel</span>
-    <span class="skill-tag">GitHub Actions</span>
+    <span class="skill-tag">Next.js</span>
+    <span class="skill-tag">Data Analysis</span>
   </div>
 
   <h2 class="section-title">Live Dashboard</h2>
@@ -65,29 +60,29 @@
   </p>
 
   <h2 class="section-title">Overview</h2>
-  <p>Twitch Analytics is an end-to-end data platform that collects, stores, and visualizes live Twitch viewership. Every six hours an automated pipeline pulls the top games and their most-watched channels straight from the Twitch API, writes each run as an immutable snapshot into a Postgres database, and serves the accumulated history through a Next.js dashboard with KPI cards, top-10 tables, and trend charts. A natural-language assistant sits on top of the stored metrics so the data can be queried in plain English. The project was built to demonstrate the full analyst workflow — source the data, make it trustworthy, model it, extract the signal, and communicate it — rather than starting from a pre-cleaned CSV.</p>
+  <p>Twitch Analytics is an end-to-end data platform that collects, stores, and visualizes live Twitch viewership. Every six hours an automated pipeline pulls the top games and their most-watched channels straight from the Twitch API, writes each run as an immutable snapshot into a Postgres database, and serves the accumulated history through a Next.js dashboard with KPI cards, top-10 tables, and trend charts. A natural-language assistant sits on top of the stored metrics so the data can be queried in plain English. I built it because most portfolio projects start from a pre-cleaned CSV, and I wanted to own the whole workflow: sourcing the data, making it trustworthy, modeling it, and explaining what it says.</p>
 
   <h2 class="section-title">Architecture</h2>
   <p>The system is a full-stack pipeline with a clear separation between ingestion, storage, and presentation:</p>
   <ul>
-    <li><strong>Ingestion (Python)</strong> — OAuth2 authentication against the Twitch API, paginated stream collection (with a safety cap), and a database adapter that writes each run in a single transaction.</li>
-    <li><strong>Storage (Supabase / Postgres)</strong> — a normalized four-table schema with row-level security enabled deny-by-default, plus indexes powering the trend and top-N queries.</li>
-    <li><strong>API + UI (Next.js on Vercel)</strong> — a read endpoint (<code>GET /api/metrics</code>) returning the latest snapshot plus history, a protected refresh endpoint (<code>POST /api/refresh</code>), and a Recharts dashboard.</li>
-    <li><strong>Scheduling (GitHub Actions)</strong> — a cron workflow runs ingestion every six hours and auto-deploys on push to <code>main</code>.</li>
+    <li><strong>Ingestion (Python):</strong> OAuth2 authentication against the Twitch API, paginated stream collection (with a safety cap), and a database adapter that writes each run in a single transaction.</li>
+    <li><strong>Storage (Supabase / Postgres):</strong> a normalized four-table schema with row-level security enabled deny-by-default, plus indexes powering the trend and top-N queries.</li>
+    <li><strong>API + UI (Next.js on Vercel):</strong> a read endpoint (<code>GET /api/metrics</code>) returning the latest snapshot plus history, a protected refresh endpoint (<code>POST /api/refresh</code>), and a Recharts dashboard.</li>
+    <li><strong>Scheduling (GitHub Actions):</strong> a cron workflow runs ingestion every six hours and auto-deploys on push to <code>main</code>.</li>
   </ul>
 
   <h2 class="section-title">Data Model</h2>
-  <p>The data is modeled as immutable time-series snapshots rather than mutable current-state rows, so history is never overwritten:</p>
+  <p>Every run is stored as an immutable time-series snapshot, so history is never overwritten:</p>
   <ul>
-    <li><strong>games</strong> — the tracked category catalog (top 10 refreshed daily; untracked games retain their history).</li>
-    <li><strong>ingestion_runs</strong> — one row per collection run, timestamped and used as the snapshot key.</li>
-    <li><strong>game_metrics</strong> — viewers and live-stream counts per game per run.</li>
-    <li><strong>top_streams</strong> — the top channels captured in each run, with viewer counts, titles, and verified status.</li>
+    <li><strong>games</strong>: the tracked category catalog (top 10 refreshed daily; untracked games retain their history).</li>
+    <li><strong>ingestion_runs</strong>: one row per collection run, timestamped and used as the snapshot key.</li>
+    <li><strong>game_metrics</strong>: viewers and live-stream counts per game per run.</li>
+    <li><strong>top_streams</strong>: the top channels captured in each run, with viewer counts, titles, and verified status.</li>
   </ul>
-  <p>Data-integrity decisions were deliberate: the run timestamp acts as a unique key so re-runs never double-count, each snapshot is written in one transaction so the database never holds a half-loaded run, and an <code>is_estimate</code> flag honestly marks any category whose collection was truncated by the pagination cap. Column types were right-sized against actual value ranges (peak viewership in the low tens of thousands, well inside an <code>int</code>) rather than defaulting to the largest type, and the small games table was intentionally left denormalized.</p>
+  <p>A few integrity decisions mattered here. The run timestamp acts as a unique key, so re-running ingestion never double-counts. Each snapshot is written in one transaction, so the database never holds a half-loaded run. An <code>is_estimate</code> flag marks any category whose collection was truncated by the pagination cap. I also sized column types against actual value ranges (peak viewership sits in the low tens of thousands, well inside an <code>int</code>) and left the small games table denormalized on purpose.</p>
 
   <h2 class="section-title">Insights</h2>
-  <p>The dashboard is not just a platform &mdash; the accumulated snapshots were mined for concrete findings. The window below covers <strong>12 snapshots over roughly 38 hours (2026-07-06 to 2026-07-08)</strong>. These are directional signals from a short window, not seasonal trends; the pipeline keeps accumulating history, so the numbers sharpen over time.</p>
+  <p>I mined the accumulated snapshots for concrete findings. The window below covers <strong>12 snapshots over roughly 38 hours (2026-07-06 to 2026-07-08)</strong>, so treat these as directional signals; the pipeline keeps accumulating history, and the numbers sharpen over time.</p>
 
   <table class="table table-bordered table-sm mt-3 mb-4">
     <thead class="table-light">
@@ -99,46 +94,46 @@
     <tbody>
       <tr>
         <td>Viewership is winner-take-most</td>
-        <td>In the most recent full snapshot (~790k viewers across 10 games), <strong>Just Chatting alone accounts for 30%</strong> of tracked viewers and the <strong>top 3 categories account for 54%</strong>. Attention concentrates in a handful of categories with a long tail below.</td>
+        <td>In the most recent full snapshot (~790k viewers across 10 games), <strong>Just Chatting alone accounts for 30%</strong> of tracked viewers and the <strong>top 3 categories account for 54%</strong>. Everything below that is a long tail.</td>
       </tr>
       <tr>
         <td>Viewers-per-stream splits categories into two shapes</td>
-        <td>Dividing viewers by live streams reveals whether a category is <em>star-driven</em> or <em>community-driven</em>: <strong>IRL runs ~245 viewers/stream</strong> (a few large broadcasters carry it) while <strong>Fortnite (~13) and Dead by Daylight (~11)</strong> ride a massive long tail of small streams &mdash; a <strong>~20&times; spread</strong>. A single ratio segments the catalog in a way raw viewer totals cannot.</td>
+        <td>Dividing viewers by live streams shows whether a category is <em>star-driven</em> or <em>community-driven</em>. <strong>IRL runs ~245 viewers/stream</strong> (a few large broadcasters carry it) while <strong>Fortnite (~13) and Dead by Daylight (~11)</strong> ride a massive long tail of small streams, a <strong>~20&times; spread</strong> that raw viewer totals would never surface.</td>
       </tr>
       <tr>
         <td>Prime-time swing is ~2&times;</td>
-        <td>On a like-for-like basis, total viewership peaks around <strong>22:00 UTC</strong> (EU evening / US afternoon) and bottoms around <strong>09:34 UTC</strong> (Americas overnight) &mdash; a <strong>213% peak-to-trough swing</strong> within a day.</td>
+        <td>On a like-for-like basis, total viewership peaks around <strong>22:00 UTC</strong> (EU evening / US afternoon) and bottoms around <strong>09:34 UTC</strong> (Americas overnight), a <strong>213% peak-to-trough swing</strong> within a day.</td>
       </tr>
       <tr>
-        <td>The pipeline validates itself</td>
-        <td>When a scheduled run and a manual refresh land a few minutes apart, the two independent measurements of the same moment agree within <strong>~0.1&ndash;3%</strong> (e.g. 206,319 vs 206,566 viewers). Repeated measurements converging is a free reliability check on the ingestion.</td>
+        <td>Independent runs agree</td>
+        <td>When a scheduled run and a manual refresh land a few minutes apart, the two independent measurements of the same moment agree within <strong>~0.1&ndash;3%</strong> (e.g. 206,319 vs 206,566 viewers), which doubles as a free reliability check on the ingestion.</td>
       </tr>
     </tbody>
   </table>
 
   <h3 class="mt-4" style="font-size:1.1rem; font-weight:600;">Data-Quality Note</h3>
-  <p>A naive read of the raw history shows a "551% intraday swing" peaking at 790k viewers. <strong>That is an artifact, not a trend.</strong> The most recent snapshot tracks 10 games; every earlier snapshot tracks only 5 (the fixed list in use before the dynamic top-10 feature deployed mid-window). Summing all games per run therefore compares 5 categories against 10. The corrected approach restricts every cross-run comparison to the <strong>5 games present in all 12 runs</strong> (Fortnite, Marvel Rivals, Minecraft, Overwatch, VALORANT); on that apples-to-apples basis the real intraday swing is 213%. Totals from the single most-recent 10-game snapshot are internally consistent and valid on their own. Verified streamers show ~1.6&times; the median viewers of unverified ones in the latest snapshot, but only 5 of the top 100 streams are unverified &mdash; too small a sample to report, and noted here so the omission is deliberate rather than an oversight.</p>
+  <p>A naive read of the raw history shows a "551% intraday swing" peaking at 790k viewers. <strong>That number is an artifact.</strong> The most recent snapshot tracks 10 games; every earlier snapshot tracks only 5 (the fixed list in use before the dynamic top-10 feature deployed mid-window). Summing all games per run therefore compares 5 categories against 10. To correct for it, I restricted every cross-run comparison to the <strong>5 games present in all 12 runs</strong> (Fortnite, Marvel Rivals, Minecraft, Overwatch, VALORANT); on that apples-to-apples basis the real intraday swing is 213%. Totals from the single most-recent 10-game snapshot are internally consistent and valid on their own. One more omission worth explaining: verified streamers show ~1.6&times; the median viewers of unverified ones in the latest snapshot, but only 5 of the top 100 streams are unverified, so the sample is too small to report.</p>
 
   <h2 class="section-title">Dashboard &amp; AI Assistant</h2>
-  <p>The front end presents KPI cards with snapshot-over-snapshot deltas, a top-10 categories table, sortable top-channels tables with verified checkmarks and estimate badges, and Recharts trend lines over a 24-hour window with 6-hour ticks. A conversational "Ask the data" assistant answers natural-language questions over the stored metrics (e.g. "which game grew the most today?") and can drive whitelisted visualization commands such as hiding or showing series, toggling log scale, and resetting the view. The assistant is provider-agnostic &mdash; Gemini by default, switchable to Claude or OpenAI &mdash; and is protected by a per-IP rate limit of 8 requests per minute.</p>
+  <p>The front end presents KPI cards with snapshot-over-snapshot deltas, a top-10 categories table, sortable top-channels tables with verified checkmarks and estimate badges, and Recharts trend lines over a 24-hour window with 6-hour ticks. A conversational "Ask the data" assistant answers natural-language questions over the stored metrics (e.g. "which game grew the most today?") and can drive whitelisted visualization commands such as hiding or showing series, toggling log scale, and resetting the view. The assistant is provider-agnostic (Gemini by default, switchable to Claude or OpenAI) and sits behind a per-IP rate limit of 8 requests per minute.</p>
 
   <h2 class="section-title">Engineering Practices</h2>
   <ul>
-    <li><strong>CI/CD &amp; scheduling</strong> — GitHub Actions runs ingestion every six hours and auto-deploys the dashboard on push to <code>main</code>.</li>
-    <li><strong>Security</strong> — secrets live in environment variables (never in code or the frontend), the database enforces deny-by-default row-level security, the manual-refresh endpoint requires a secret, and the AI endpoint is rate-limited.</li>
-    <li><strong>Testing</strong> — the ingestion layer is covered by a passing test suite with checks that no secrets leak into logs.</li>
-    <li><strong>Idempotency</strong> — snapshot-keyed writes make every run safely repeatable.</li>
+    <li><strong>CI/CD &amp; scheduling:</strong> GitHub Actions runs ingestion every six hours and auto-deploys the dashboard on push to <code>main</code>.</li>
+    <li><strong>Security:</strong> secrets live in environment variables (never in code or the frontend), the database enforces deny-by-default row-level security, the manual-refresh endpoint requires a secret, and the AI endpoint is rate-limited.</li>
+    <li><strong>Testing:</strong> the ingestion layer is covered by a passing test suite with checks that no secrets leak into logs.</li>
+    <li><strong>Idempotency:</strong> snapshot-keyed writes make every run safely repeatable.</li>
   </ul>
 
   <h2 class="section-title">Limitations</h2>
   <ul>
     <li>The API exposes public viewership data only; monetization metrics (ad revenue, subscriptions) are visible only to the broadcaster and cannot be collected.</li>
-    <li>Insights are drawn from a short (~38-hour) window, so they are directional signals rather than seasonal trends.</li>
-    <li>Two snapshots taken within the same second would collide on the timestamp key &mdash; a documented edge case, not observed in normal 6-hour scheduling.</li>
+    <li>Insights are drawn from a short (~38-hour) window, so they describe days, not seasons.</li>
+    <li>Two snapshots taken within the same second would collide on the timestamp key. This is a documented edge case that hasn't come up under normal 6-hour scheduling.</li>
   </ul>
 
   <h2 class="section-title">Conclusion</h2>
-  <p>Twitch Analytics covers the full analyst pipeline from raw API to communicated insight. The engineering &mdash; automated ingestion, a snapshot-based schema, CI/CD scheduling, and cloud deployment &mdash; exists to serve the analysis: viewership is winner-take-most, viewers-per-stream cleanly separates star-driven from community-driven categories, and prime-time viewership swings roughly 2&times; across a day. Just as important, the project shows the discipline to catch a 551% "trend" as a schema-change artifact and correct it &mdash; flagging uncertainty rather than hiding it.</p>
+  <p>Twitch Analytics covers the full analyst pipeline from raw API to communicated insight. The engineering (automated ingestion, a snapshot-based schema, CI/CD scheduling, cloud deployment) exists to serve the analysis: viewership is winner-take-most, viewers-per-stream separates star-driven from community-driven categories, and prime-time viewership roughly doubles across a day. The part I'm proudest of is catching the 551% "trend," tracing it to a mid-window schema change, and correcting it before it made it into any finding.</p>
 
   <h2 class="section-title">Live Site</h2>
   <p><a href="https://twitch-analytics-seven.vercel.app/" target="_blank" rel="noopener">twitch-analytics-seven.vercel.app</a></p>

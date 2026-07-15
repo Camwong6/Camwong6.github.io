@@ -80,9 +80,9 @@
 
   <h2 class="section-title">Key Drivers of Demand</h2>
   <ul>
-    <li><strong>Number of reviews</strong> — strongest indicator of trust and popularity</li>
-    <li><strong>Minimum nights & availability</strong> — shorter stays and higher availability increase demand</li>
-    <li><strong>Price & location</strong> — competitive pricing and desirable neighborhoods drive bookings</li>
+    <li><strong>Number of reviews</strong>: strongest indicator of trust and popularity</li>
+    <li><strong>Minimum nights & availability</strong>: shorter stays and higher availability increase demand</li>
+    <li><strong>Price & location</strong>: competitive pricing and desirable neighborhoods drive bookings</li>
   </ul>
 
   <h2 class="section-title">Insights & Model Performance</h2>
@@ -91,6 +91,7 @@
     <li>Performance is consistent across both demand classes</li>
     <li>Demand is predictable from behavioral and listing features alone</li>
   </ul>
+  <p><strong>A caveat on that AUC:</strong> the Demand Score target is built from review frequency and recency, and review count is also the model's top feature. Some of the separation is the model recovering its own label rather than learning independent demand signals, so the 97.90% overstates real-world predictive power. Rerunning the model without review-derived features would give a more honest estimate; the remaining drivers (minimum nights, availability, price, location) still carry meaningful signal on their own.</p>
 
   <h2 class="section-title">Recommendations</h2>
   <p>For Hosts:</p>
@@ -109,7 +110,7 @@
 
   <h2 class="section-title">Key Insights</h2>
   <ul>
-    <li>Demand is driven by trust signals (reviews), pricing, and availability together — no single factor dominates</li>
+    <li>Demand is driven by trust signals (reviews), pricing, and availability together; no single factor dominates</li>
     <li>Random Forest at 93.28% accuracy vs. logistic regression at 68.89% shows ensemble methods are worth the complexity here</li>
     <li>Review count as the top feature suggests social proof matters more to bookers than price or location alone</li>
   </ul>
